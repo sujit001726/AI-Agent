@@ -103,7 +103,7 @@ function normalizeUrl(url: string): string {
 }
 
 function isValidEmail(email: string): boolean {
-  return EMAIL_REGEX.test(email) && !email.includes('..') && email.length < 100;
+  return EMAIL_REGEX.test(email) && !email.includes('..') && email.length < 254;
 }
 
 function isNotImageEmail(email: string): boolean {
