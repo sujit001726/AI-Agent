@@ -86,7 +86,7 @@ async function fetchWithTimeout(url: string, timeoutMs: number): Promise<string>
   try {
     const res = await fetch(url, {
       signal: controller.signal,
-      headers: { 'User-Agent': 'LeadFlow-Enrichment/1.0 (contact enrichment bot)' },
+      headers: { 'User-Agent': 'LeadFlow-Enrichment/1.1 (contact enrichment bot; https://leadflow.ai)' },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.text();
