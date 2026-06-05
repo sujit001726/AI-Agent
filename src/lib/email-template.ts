@@ -40,7 +40,7 @@ export function injectUnsubscribeFooter(htmlBody: string, unsubscribeUrl: string
 <hr style="border:none;border-top:1px solid #e5e7eb;margin:24px 0" />
 <p style="font-size:12px;color:#9ca3af;text-align:center;margin:0">
   You are receiving this email because your business was identified as a potential partner.<br>
-  <a href="${unsubscribeUrl}" style="color:#6b7280">Unsubscribe</a>
+  <a href="${unsubscribeUrl}" style="color:#4f46e5;text-decoration:underline">Unsubscribe</a>
 </p>`;
   return htmlBody + footer;
 }
