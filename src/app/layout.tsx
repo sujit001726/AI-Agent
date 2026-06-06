@@ -14,7 +14,7 @@ const inter = Inter({
 const sora = Sora({
   subsets: ["latin"],
   variable: "--font-sora",
-  weight: ["400", "600", "700", "800"],
+  weight: ["300", "400", "600", "700", "800"],
   display: "swap",
 });
 
