@@ -21,7 +21,7 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "LeadFlow AI — Find Leads Worldwide with Google Maps",
   description: "AI-powered lead generation platform. Discover businesses on Google Maps, enrich contact info automatically, and send personalized outreach at scale.",
-  keywords: ["lead generation", "AI", "Google Maps", "business discovery", "email outreach", "sales automation"],
+  keywords: ["lead generation", "AI", "Google Maps", "business discovery", "email outreach", "sales automation", "CRM", "cold email", "B2B leads"],
   authors: [{ name: "LeadFlow AI Team" }],
   openGraph: {
     title: "LeadFlow AI — Find Leads Worldwide",
