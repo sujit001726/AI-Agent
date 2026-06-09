@@ -15,6 +15,8 @@ export interface TemplateContext {
 
 /**
  * Replaces {{variable}} merge fields in a template string.
+ * Supported fields: {{name}}, {{city}}, {{website}}, {{email}}, {{address}}, {{phone}}.
+ * Unknown fields are left as-is in the output.
  */
 export function renderTemplate(template: string, context: TemplateContext): string {
   return template.replace(/\{\{(\w+)\}\}/g, (_, key: string) => {
