@@ -9,7 +9,7 @@ declare global {
 function createPrismaClient(): PrismaClient {
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
-    throw new Error('DATABASE_URL is not set in environment variables');
+    throw new Error('DATABASE_URL is not set. Please add it to your .env file before starting the server.');
   }
   const adapter = new PrismaPg({ connectionString });
   return new PrismaClient({ adapter });
