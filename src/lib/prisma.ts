@@ -6,6 +6,7 @@ declare global {
   var __prisma: PrismaClient | undefined;
 }
 
+/** Creates a PrismaClient instance with the pg adapter configured from DATABASE_URL. */
 function createPrismaClient(): PrismaClient {
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
