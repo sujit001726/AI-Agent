@@ -71,7 +71,7 @@ async function extractEmailsFromUrl(url: string): Promise<EnrichmentResult | nul
       const preferred = filtered.find((e) => /^(info|contact|hello|support|admin)@/i.test(e));
       return {
         email: preferred || filtered[0],
-        confidence: preferred ? 0.8 : 0.6,
+        confidence: preferred ? 0.85 : 0.65,
         source: url,
       };
     }
