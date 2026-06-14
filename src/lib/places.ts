@@ -29,7 +29,7 @@ export async function searchPlaces(
   pageToken?: string
 ): Promise<{ results: PlaceResult[]; nextPageToken?: string }> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  if (!apiKey) throw new Error('GOOGLE_PLACES_API_KEY is not set');
+  if (!apiKey) throw new Error('GOOGLE_PLACES_API_KEY is not set. Add it to your .env file to enable live place searches.');
 
   const body: Record<string, unknown> = {
     textQuery: query,
