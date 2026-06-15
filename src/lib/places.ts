@@ -34,7 +34,7 @@ export async function searchPlaces(
 
   const body: Record<string, unknown> = {
     textQuery: query,
-    pageSize: Math.min(maxResults, 20),
+    pageSize: Math.min(maxResults, MAX_PAGE_SIZE),
   };
   if (pageToken) body.pageToken = pageToken;
 
