@@ -13,6 +13,7 @@ export interface PlaceResult {
 }
 
 const BASE_URL = 'https://places.googleapis.com/v1/places:searchText';
+const MAX_PAGE_SIZE = 20;
 
 const FIELD_MASK = [
   'places.id',
