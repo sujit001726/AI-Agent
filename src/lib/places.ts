@@ -80,7 +80,7 @@ export function getSimulatedPlaces(query: string, maxResults: number): PlaceResu
       placeId: `simulated-place-${i}`,
       name: `${query} Business #${i}`,
       address: `${i} Main Street, Simulated City`,
-      rating: parseFloat((3 + Math.random() * 2).toFixed(1)),
+      rating: parseFloat((3 + Math.random() * 2).toFixed(1)), // random rating between 3.0 and 5.0
       website: i % 3 === 0 ? null : `https://example-business-${i}.com`,
       phone: `+1-555-000-${String(i).padStart(4, '0')}`,
     });
