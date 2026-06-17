@@ -26,8 +26,10 @@ export function renderTemplate(template: string, context: TemplateContext): stri
 }
 
 /**
- * Generates an unsubscribe URL for the given lead email.
- * The URL is signed with a simple token derived from the email.
+ * Generates an unsubscribe URL for the given lead.
+ * @param leadId - The unique identifier of the lead record.
+ * @param baseUrl - The base URL of the application (e.g., https://app.leadflow.ai).
+ * @returns A full URL the recipient can visit to unsubscribe.
  */
 export function generateUnsubscribeUrl(leadId: string, baseUrl: string): string {
   return `${baseUrl}/api/unsubscribe?leadId=${encodeURIComponent(leadId)}`;
