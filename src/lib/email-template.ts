@@ -41,7 +41,7 @@ export function generateUnsubscribeUrl(leadId: string, baseUrl: string): string 
 export function injectUnsubscribeFooter(htmlBody: string, unsubscribeUrl: string): string {
   const footer = `
 <br><br>
-<hr style="border:none;border-top:1px solid #e5e7eb;margin:24px 0" />
+<hr style="border:none;border-top:1px solid #e5e7eb;margin:20px 0" />
 <p style="font-size:12px;color:#9ca3af;text-align:center;margin:0">
   You are receiving this email because your business was identified as a potential partner.<br>
   <a href="${unsubscribeUrl}" style="color:#4f46e5;text-decoration:underline">Unsubscribe</a>
