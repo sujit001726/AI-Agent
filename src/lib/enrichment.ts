@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio';
 
 const EMAIL_REGEX = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g;
-const CONTACT_PAGE_PATHS = ['/contact', '/contact-us', '/about', '/about-us', '/info', '/team'];
+const CONTACT_PAGE_PATHS = ['/contact', '/contact-us', '/about', '/about-us', '/info', '/team', '/careers'];
 
 interface EnrichmentResult {
   email: string | null;
