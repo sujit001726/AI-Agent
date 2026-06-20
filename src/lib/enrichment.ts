@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 
+// RFC-5322-inspired email pattern — permissive enough for scraping, strict enough to avoid false positives
 const EMAIL_REGEX = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g;
 const CONTACT_PAGE_PATHS = ['/contact', '/contact-us', '/about', '/about-us', '/info', '/team', '/careers'];
 
