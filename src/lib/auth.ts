@@ -51,6 +51,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
   },
   pages: {
+    // Custom login route — update here if the auth flow changes
     signIn: "/login",
   },
 });
