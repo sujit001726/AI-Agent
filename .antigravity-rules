@@ -1,0 +1,8 @@
+# LeadFlow Coding Rules
+
+- Use TypeScript everywhere (strict mode enabled).
+- Use Tailwind CSS for all styling, following modern UI/UX best practices (harmony, dark mode support, glassmorphism, smooth animations).
+- Use Zod for all input validation (API schemas, forms, environmental variables).
+- Commit incrementally with clear, descriptive semantic commit messages.
+- Maintain documentation integrity: do not remove comments or docstrings unless requested.
+- Outbound email sending is sensitive: run in review-driven mode, never auto-execute real sends during testing.
