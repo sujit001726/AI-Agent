@@ -21,7 +21,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     CredentialsProvider({
       name: "Dev Login",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "dev@leadflow.local" },
+        email: { label: "Email", type: "email", placeholder: "dev@example.com" },
       },
       async authorize(credentials) {
         if (!credentials?.email) return null;
