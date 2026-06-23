@@ -31,7 +31,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           update: {},
           create: {
             email: credentials.email as string,
-            name: "Dev User",
+            name: "Developer",
             emailVerified: new Date(),
           },
         });
