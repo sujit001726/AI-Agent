@@ -109,5 +109,5 @@ function isValidEmail(email: string): boolean {
 
 function isNotImageEmail(email: string): boolean {
   // Filter out things like "image.png@" which regex can match
-  return !/\.(png|jpg|jpeg|gif|webp|svg|css|js)@/i.test(email);
+  return !/\.(png|jpg|jpeg|gif|webp|svg|css|js|woff|ttf|eot)@/i.test(email);
 }
