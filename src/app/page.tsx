@@ -375,154 +375,76 @@ export default function HomePage() {
 
       <Navbar onSignOut={() => router.push("/api/auth/signout")} />
 
-      {/* ============ HERO SECTION ============ */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-4 overflow-hidden">
-        {/* Full Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/ai-agent-hero.png"
-            alt="AI Background"
-            fill
-            className="object-cover object-center opacity-40 mix-blend-screen"
-            priority
-          />
-          {/* Gradients to blend image into the page */}
-          <div className="absolute inset-0 bg-gradient-to-b from-surface-950/40 via-surface-950/60 to-surface-950" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface-950/80 via-transparent to-surface-950/80" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--color-surface-950)_100%)] opacity-80" />
-        </div>
-
-        {/* Glow orbs */}
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full opacity-[0.1] blur-[100px] pointer-events-none bg-emerald-500" style={{ animation: "glow-pulse 8s ease-in-out infinite" }} />
-
-        <div className="max-w-5xl mx-auto w-full text-center relative z-10">
-          <div className="inline-flex items-center justify-center gap-2 bg-emerald-500/10 border border-emerald-500/30 backdrop-blur-md rounded-full px-5 py-2 text-xs sm:text-sm font-semibold text-emerald-300 mb-8 sm:mb-10 animate-slide-up shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-            <Sparkles className="w-4 h-4" />
-            The Ultimate AI Lead Generation Platform
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot ml-1" />
+      {/* ============ HERO / SEARCH SECTION ============ */}
+      <section className="relative pt-32 pb-16 px-4 flex flex-col items-center justify-center text-center">
+        {/* Subtle background glow, not too intense */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-[0.07] blur-[80px] pointer-events-none bg-emerald-500" />
+        
+        <div className="max-w-4xl mx-auto w-full relative z-10">
+          <div className="inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs font-medium text-slate-300 mb-8">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+            LeadFlow AI
           </div>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold text-white leading-[1.05] mb-8 tracking-tight drop-shadow-2xl"
-            style={{ fontFamily: "var(--font-sora, inherit)" }}>
-            Find Any Business.<br />
-            <span className="gradient-text">Reach Them Instantly.</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 tracking-tight" style={{ fontFamily: "var(--font-sora, inherit)" }}>
+            Find your next customers.
           </h1>
 
-          <p className="text-slate-300 text-lg sm:text-xl lg:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed drop-shadow-lg font-medium">
-            Type a plain-English instruction. LeadFlow uses AI to discover businesses on Google Maps, enrich contact info, and send personalized outreach in seconds.
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-12">
+            Simply describe the businesses you're looking for. We'll discover them on Google Maps, enrich their contact info, and reach out automatically.
           </p>
 
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-20">
-            <button
-              id="hero-start-cta"
-              onClick={() => document.getElementById("search-section")?.scrollIntoView({ behavior: "smooth" })}
-              className="btn-primary flex items-center justify-center gap-2 text-lg px-10 py-5 w-full sm:w-auto shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:scale-105 transition-transform"
-            >
-              <Zap className="w-5 h-5" />
-              Start Finding Leads
-            </button>
-            <Link
-              href="/about"
-              className="btn-secondary flex items-center justify-center gap-2 text-lg px-10 py-5 w-full sm:w-auto hover:bg-white/10 transition-colors backdrop-blur-md"
-            >
-              <Play className="w-5 h-5" />
-              Watch Demo
-            </Link>
-          </div>
-          
-          {/* Stats row */}
-          <div className="flex flex-wrap justify-center gap-8 sm:gap-14 pt-10 border-t border-white/10">
-            {STATS.map(({ value, label, icon: Icon }) => (
-              <div key={label} className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mb-1 backdrop-blur-sm">
-                  <Icon className="w-6 h-6 text-emerald-400" />
-                </div>
-                <div className="text-white font-extrabold text-2xl sm:text-3xl leading-none drop-shadow-md">{value}</div>
-                <div className="text-slate-400 text-sm font-medium tracking-wide uppercase">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ SEARCH SECTION ============ */}
-      <section id="search-section" className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-              Start a Campaign
-            </h2>
-            <p className="text-slate-400">Describe what you're looking for in plain English</p>
-          </div>
-
-          {/* Main search card */}
-          <div className="glass-card rounded-2xl p-5 sm:p-7 mb-4 glow-brand">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-                  <input
-                    id="instruction-input"
-                    value={instruction}
-                    onChange={e => setInstruction(e.target.value)}
-                    placeholder={EXAMPLE_PROMPTS[placeholderIdx]}
-                    disabled={loading}
-                    className="input-field pl-11"
-                    style={{ height: "52px" }}
-                  />
-                </div>
-                <button
-                  id="start-campaign"
-                  type="submit"
-                  disabled={loading || !instruction.trim()}
-                  className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none px-7"
-                  style={{ height: "52px" }}
-                >
-                  {loading ? (
-                    <><Loader2 className="w-4 h-4 animate-spin" /> Parsing…</>
-                  ) : (
-                    <>Start Campaign <ArrowRight className="w-4 h-4" /></>
-                  )}
-                </button>
-              </div>
-
-              {error && (
-                <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 flex items-center gap-2">
-                  <X className="w-4 h-4 shrink-0" />
-                  {error}
-                </p>
-              )}
+          {/* Integrated Search Box */}
+          <div className="max-w-3xl mx-auto mb-10">
+            <form onSubmit={handleSubmit} className="relative group text-left">
+               {/* Search Input */}
+               <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                 <Search className="h-5 w-5 text-slate-400 group-focus-within:text-emerald-400 transition-colors" />
+               </div>
+               <input 
+                 id="hero-instruction-input"
+                 className="block w-full pl-14 pr-32 sm:pr-40 py-5 bg-surface-900/60 border border-white/10 rounded-2xl text-base sm:text-lg text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50 transition-all shadow-2xl backdrop-blur-md"
+                 value={instruction}
+                 onChange={e => setInstruction(e.target.value)}
+                 placeholder={EXAMPLE_PROMPTS[placeholderIdx]}
+                 disabled={loading}
+               />
+               <div className="absolute inset-y-2 right-2">
+                 <button 
+                   id="hero-start-campaign"
+                   type="submit"
+                   disabled={loading || !instruction.trim()}
+                   className="h-full px-4 sm:px-6 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                 >
+                   {loading ? (
+                     <><Loader2 className="w-4 h-4 animate-spin sm:mr-2" /><span className="hidden sm:inline">Parsing...</span></>
+                   ) : (
+                     "Start Finding"
+                   )}
+                 </button>
+               </div>
             </form>
 
+            {error && (
+              <p className="text-red-400 text-sm mt-4 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 flex items-center gap-2 text-left">
+                <X className="w-4 h-4 shrink-0" />
+                {error}
+              </p>
+            )}
+            
             {/* Example chips */}
-            <div className="flex flex-wrap gap-2 mt-5">
-              <span className="text-xs text-slate-600 self-center">Try:</span>
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
+              <span className="text-xs text-slate-500">Try:</span>
               {EXAMPLE_PROMPTS.map(p => (
                 <button
                   key={p}
                   onClick={() => setInstruction(p)}
-                  className="text-xs text-slate-400 hover:text-white bg-surface-800 hover:bg-surface-700 border border-white/5 hover:border-emerald-500/30 rounded-lg px-3 py-1.5 transition-all"
+                  className="text-xs text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 border border-white/5 rounded-full px-3 py-1.5 transition-colors"
                 >
                   {p}
                 </button>
               ))}
             </div>
-          </div>
-
-          {/* How it works mini */}
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { n: "1", icon: "🧠", title: "AI Parsing", desc: "Claude extracts your intent" },
-              { n: "2", icon: "🗺️", title: "Map Discovery", desc: "Google Maps finds businesses" },
-              { n: "3", icon: "📧", title: "Outreach", desc: "Personalized emails sent" },
-            ].map(step => (
-              <div key={step.n} className="glass-card rounded-xl p-4 text-center card-hover">
-                <div className="text-xl mb-1.5">{step.icon}</div>
-                <div className="text-xs font-semibold text-white mb-1">{step.title}</div>
-                <div className="text-[11px] text-slate-500 leading-snug">{step.desc}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
