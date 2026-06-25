@@ -378,86 +378,113 @@ export default function HomePage() {
       {/* ============ HERO SECTION ============ */}
       <section className="relative min-h-screen flex items-center pt-20 pb-16 px-4 overflow-hidden">
         {/* Background orbs */}
-        <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none bg-emerald-500" style={{ animation: "glow-pulse 5s ease-in-out infinite" }} />
-        <div className="absolute top-1/3 -right-32 w-80 h-80 rounded-full opacity-15 blur-3xl pointer-events-none bg-indigo-500" style={{ animation: "glow-pulse 7s ease-in-out infinite reverse" }} />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-64 blur-3xl pointer-events-none opacity-10 bg-cyan-400" />
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full opacity-[0.15] blur-[100px] pointer-events-none bg-emerald-500" style={{ animation: "glow-pulse 8s ease-in-out infinite" }} />
+        <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[600px] h-[500px] rounded-full opacity-[0.1] blur-[80px] pointer-events-none bg-indigo-500" style={{ animation: "glow-pulse 10s ease-in-out infinite reverse" }} />
 
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
-          {/* LEFT: Text content */}
-          <div className="order-2 lg:order-1 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-6 animate-slide-up">
-              <Sparkles className="w-3.5 h-3.5" />
-              AI-Powered Lead Generation Platform
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot" />
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6"
-              style={{ fontFamily: "var(--font-sora, inherit)" }}>
-              Find Any Business.<br />
-              <span className="gradient-text">Reach Them Instantly.</span>
-            </h1>
-
-            <p className="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-              Type a plain-English instruction. LeadFlow uses AI to discover businesses on Google Maps, enrich their contact info, and send personalized outreach — all in under 30 seconds.
-            </p>
-
-            {/* Stats row */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6 mb-8">
-              {STATS.map(({ value, label, icon: Icon }) => (
-                <div key={label} className="flex items-center gap-2">
-                  <Icon className="w-4 h-4 text-emerald-400" />
-                  <div>
-                    <div className="text-white font-bold text-lg leading-none">{value}</div>
-                    <div className="text-slate-500 text-xs">{label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <button
-                id="hero-start-cta"
-                onClick={() => document.getElementById("search-section")?.scrollIntoView({ behavior: "smooth" })}
-                className="btn-primary flex items-center justify-center gap-2 text-base"
-              >
-                <Zap className="w-4.5 h-4.5" />
-                Start Finding Leads
-              </button>
-              <Link
-                href="/about"
-                className="btn-secondary flex items-center justify-center gap-2 text-sm"
-              >
-                <Play className="w-4 h-4" />
-                Watch Demo
-              </Link>
-            </div>
+        <div className="max-w-5xl mx-auto w-full text-center relative z-10 pt-10">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-8 animate-slide-up">
+            <Sparkles className="w-3.5 h-3.5" />
+            AI-Powered Lead Generation Platform
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot" />
           </div>
 
-          {/* RIGHT: AI Agent Image */}
-          <div className="order-1 lg:order-2 flex justify-center items-center relative">
-            <div className="relative w-full max-w-md mx-auto">
-              {/* Glow ring */}
-              <div className="absolute inset-0 rounded-3xl opacity-30 blur-2xl bg-gradient-to-br from-emerald-500 to-cyan-500 scale-95" />
-              {/* Image container */}
-              <div className="relative rounded-3xl overflow-hidden border border-white/10 glass-card animate-float"
-                style={{ boxShadow: "0 40px 100px rgba(0,0,0,0.5), 0 0 80px rgba(52,211,153,0.15)" }}>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight"
+            style={{ fontFamily: "var(--font-sora, inherit)" }}>
+            Find Any Business.<br />
+            <span className="gradient-text">Reach Them Instantly.</span>
+          </h1>
+
+          <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            Type a plain-English instruction. LeadFlow uses AI to discover businesses on Google Maps, enrich their contact info, and send personalized outreach — all in under 30 seconds.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <button
+              id="hero-start-cta"
+              onClick={() => document.getElementById("search-section")?.scrollIntoView({ behavior: "smooth" })}
+              className="btn-primary flex items-center justify-center gap-2 text-base px-8 py-4 w-full sm:w-auto"
+            >
+              <Zap className="w-5 h-5" />
+              Start Finding Leads
+            </button>
+            <Link
+              href="/about"
+              className="btn-secondary flex items-center justify-center gap-2 text-base px-8 py-4 w-full sm:w-auto"
+            >
+              <Play className="w-5 h-5" />
+              Watch Demo
+            </Link>
+          </div>
+          
+          {/* Stats row */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-10 mb-20 border-y border-white/5 py-8 bg-surface-900/40 backdrop-blur-md rounded-3xl mx-4 sm:mx-0">
+            {STATS.map(({ value, label, icon: Icon }) => (
+              <div key={label} className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                  <Icon className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div className="text-left">
+                  <div className="text-white font-bold text-xl leading-none mb-1">{value}</div>
+                  <div className="text-slate-500 text-xs font-medium">{label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* AI Agent Image as a Dashboard Showcase */}
+          <div className="relative mx-auto max-w-4xl px-4 sm:px-0">
+            {/* Glow ring */}
+            <div className="absolute inset-0 rounded-3xl opacity-40 blur-3xl bg-gradient-to-br from-emerald-500 to-cyan-500 scale-95 translate-y-4" />
+            
+            {/* Image container */}
+            <div className="relative rounded-3xl overflow-hidden border border-white/10 glass-card animate-float"
+              style={{ boxShadow: "0 40px 100px rgba(0,0,0,0.6), 0 0 80px rgba(52,211,153,0.15)" }}>
+              
+              {/* Fake browser top bar */}
+              <div className="h-12 bg-surface-950/80 border-b border-white/10 flex items-center px-4 gap-2 backdrop-blur-xl">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                </div>
+                <div className="mx-auto flex items-center justify-center gap-2 w-64 h-7 bg-surface-800 rounded-md border border-white/5 text-xs font-medium text-slate-500">
+                  <Globe className="w-3 h-3 opacity-70" /> leadflow.ai
+                </div>
+                <div className="w-14" /> {/* Spacer for symmetry */}
+              </div>
+              
+              <div className="relative bg-surface-950 aspect-video sm:aspect-[21/9] flex items-center justify-center overflow-hidden">
                 <Image
                   src="/ai-agent-hero.png"
                   alt="LeadFlow AI Agent"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto object-cover"
+                  fill
+                  className="object-cover opacity-80 mix-blend-screen"
                   priority
                 />
+                {/* Vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-surface-950 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-b from-surface-950/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-surface-950/80 via-transparent to-surface-950/80" />
+                
                 {/* Overlay badges */}
-                <div className="absolute top-4 left-4 glass-light rounded-xl px-3 py-2 flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 pulse-dot" />
-                  <span className="text-xs font-semibold text-emerald-400">Live Discovery</span>
+                <div className="absolute top-6 left-6 glass-light rounded-xl px-4 py-2.5 flex items-center gap-3 backdrop-blur-md border border-white/20 shadow-lg hidden sm:flex">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-dot" />
+                  <span className="text-sm font-semibold text-emerald-400 tracking-wide">Live AI Discovery</span>
                 </div>
-                <div className="absolute bottom-4 right-4 glass-light rounded-xl px-3 py-2">
-                  <div className="text-xs text-slate-400">Processing</div>
-                  <div className="text-sm font-bold text-white">2,847 leads</div>
+                
+                <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 glass rounded-2xl p-4 sm:p-5 backdrop-blur-md border border-white/20 shadow-2xl w-64">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Loader2 className="w-4 h-4 text-emerald-400 animate-spin" />
+                    <div className="text-xs font-medium text-slate-300">Processing Maps Data...</div>
+                  </div>
+                  <div className="text-3xl font-extrabold text-white tracking-tight flex items-baseline gap-1.5">
+                    2,847
+                    <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">leads</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-surface-800/80 rounded-full mt-4 overflow-hidden border border-white/5">
+                    <div className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 w-[68%]" />
+                  </div>
                 </div>
               </div>
             </div>
