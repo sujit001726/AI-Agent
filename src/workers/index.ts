@@ -38,9 +38,10 @@ const discoveryWorker = new Worker<DiscoveryJobData>(
       data: { status: 'DISCOVERING' },
     });
 
-    console.log(`[Discovery] Starting for campaign ${campaignId}: "${category}" in "${location}"`);
+    try {
+      console.log(`[Discovery] Starting for campaign ${campaignId}: "${category}" in "${location}"`);
 
-    let results: PlaceResult[] = [];
+      let results: PlaceResult[] = [];
 
     if (DEV_MODE) {
       // Use simulated data in dev mode
@@ -109,8 +110,16 @@ const discoveryWorker = new Worker<DiscoveryJobData>(
       },
     });
 
-    console.log(`[Discovery] Saved ${savedCount} leads for campaign ${campaignId}`);
-    return { savedCount };
+      console.log(`[Discovery] Saved ${savedCount} leads for campaign ${campaignId}`);
+      return { savedCount };
+    } catch (error) {
+      console.error(`[Discovery] Failed for campaign ${campaignId}:`, error);
+      await prisma.campaign.update({
+        where: { id: campaignId },
+        data: { status: 'FAILED' },
+      });
+      throw error;
+    }
   },
   { connection: redisConnection, concurrency: 2 }
 );

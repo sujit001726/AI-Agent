@@ -1,11 +1,15 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { Zap } from "lucide-react";
+import Link from "next/link";
+import { Zap, Mail, Lock, Eye, EyeOff, ArrowRight, Shield, Globe, Sparkles, ChevronRight } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [tab, setTab] = useState<"login" | "signup">("login");
 
   async function handleDevLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -18,62 +22,124 @@ export default function LoginPage() {
     await signIn("google", { callbackUrl: "/" });
   }
 
+  const FEATURES = [
+    "Find businesses anywhere on Google Maps",
+    "AI-powered natural language search",
+    "Automated personalized email outreach",
+    "Real-time campaign analytics",
+    "150+ countries supported",
+  ];
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-4"
-      style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(52,211,153,0.12) 0%, transparent 65%), #020b18" }}>
+    <div className="min-h-screen flex bg-mesh">
+      <div className="grid-pattern absolute inset-0 pointer-events-none opacity-20" />
 
-      {/* Floating orb */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #34d399 0%, transparent 70%)" }} />
+      {/* Left panel: Hero */}
+      <div className="hidden lg:flex flex-col justify-between w-1/2 relative p-12 overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-indigo-500/10" />
+        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl" />
 
-      <div className="glass rounded-2xl p-6 sm:p-8 w-full max-w-md glow-brand-sm relative z-10 mx-4 sm:mx-0">
         {/* Logo */}
-        <div className="flex items-center gap-3 mb-8">
-          <div className="w-10 h-10 rounded-xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center">
-            <Zap className="w-5 h-5 text-brand-400" />
-          </div>
-          <span className="text-xl font-bold gradient-text">LeadFlow</span>
+        <div className="relative z-10">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Zap className="w-5 h-5 text-emerald-400" />
+            </div>
+            <span className="font-bold text-white text-xl">LeadFlow</span>
+            <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">AI</span>
+          </Link>
         </div>
 
-        <h1 className="text-2xl font-bold text-white mb-1">Welcome back</h1>
-        <p className="text-slate-400 text-sm mb-8">Sign in to your AI lead generation workspace</p>
-
-        {/* Dev credentials login */}
-        <form onSubmit={handleDevLogin} className="space-y-4 mb-6">
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1.5">Email</label>
-            <input
-              id="login-email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="dev@leadflow.local"
-              required
-              className="w-full bg-surface-800 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50 transition-all"
-            />
+        {/* Center content */}
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-6">
+            <Sparkles className="w-3.5 h-3.5" />
+            Trusted by 50,000+ businesses
           </div>
-          <button
-            id="login-submit"
-            type="submit"
-            disabled={loading}
-            className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-50 text-white font-semibold py-3 rounded-xl transition-all duration-200 text-sm glow-brand-sm hover:scale-[1.01] active:scale-[0.99]"
-          >
-            {loading ? "Signing in…" : "Continue with Email"}
-          </button>
-        </form>
+          <h2 className="text-4xl font-extrabold text-white mb-4 leading-tight"
+            style={{ fontFamily: "var(--font-sora, inherit)" }}>
+            The smartest way to<br />
+            <span className="gradient-text">find & reach leads</span>
+          </h2>
+          <p className="text-slate-400 text-base mb-8 leading-relaxed">
+            LeadFlow uses AI + Google Maps to discover any business worldwide and send personalized outreach in seconds.
+          </p>
 
-        {process.env.NEXT_PUBLIC_HAS_GOOGLE_AUTH && (
-          <>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex-1 h-px bg-white/10" />
-              <span className="text-xs text-slate-500">or</span>
-              <div className="flex-1 h-px bg-white/10" />
+          <div className="space-y-3">
+            {FEATURES.map(f => (
+              <div key={f} className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                  <ChevronRight className="w-3 h-3 text-emerald-400" />
+                </div>
+                <span className="text-slate-300 text-sm">{f}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom trust signals */}
+        <div className="relative z-10 flex items-center gap-6">
+          <div className="flex items-center gap-2 text-slate-500 text-xs">
+            <Shield className="w-4 h-4 text-emerald-500" />
+            SOC 2 Certified
+          </div>
+          <div className="flex items-center gap-2 text-slate-500 text-xs">
+            <Globe className="w-4 h-4 text-blue-500" />
+            GDPR Compliant
+          </div>
+        </div>
+      </div>
+
+      {/* Right panel: Auth form */}
+      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 relative z-10">
+        <div className="w-full max-w-md">
+          {/* Mobile logo */}
+          <Link href="/" className="flex items-center gap-2 mb-8 lg:hidden">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+              <Zap className="w-4.5 h-4.5 text-emerald-400" />
             </div>
+            <span className="font-bold text-white text-lg">LeadFlow</span>
+          </Link>
+
+          {/* Tab switcher */}
+          <div className="flex glass rounded-xl p-1 mb-7">
+            <button
+              id="tab-login"
+              onClick={() => setTab("login")}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${tab === "login" ? "bg-emerald-500 text-white shadow-lg" : "text-slate-400 hover:text-white"}`}
+            >
+              Sign In
+            </button>
+            <button
+              id="tab-signup"
+              onClick={() => setTab("signup")}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${tab === "signup" ? "bg-emerald-500 text-white shadow-lg" : "text-slate-400 hover:text-white"}`}
+            >
+              Create Account
+            </button>
+          </div>
+
+          {/* Card */}
+          <div className="glass-card rounded-2xl p-7 glow-brand-sm">
+            <div className="mb-7">
+              <h1 className="text-2xl font-bold text-white mb-1">
+                {tab === "login" ? "Welcome back" : "Get started free"}
+              </h1>
+              <p className="text-slate-400 text-sm">
+                {tab === "login"
+                  ? "Sign in to your LeadFlow workspace"
+                  : "Create your account and start finding leads"}
+              </p>
+            </div>
+
+            {/* Google OAuth */}
             <button
               id="login-google"
               onClick={handleGoogle}
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 bg-surface-800 hover:bg-surface-700 border border-white/10 text-white font-medium py-3 rounded-xl transition-all duration-200 text-sm"
+              className="w-full flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium py-3 rounded-xl transition-all text-sm mb-5"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -83,12 +149,117 @@ export default function LoginPage() {
               </svg>
               Continue with Google
             </button>
-          </>
-        )}
 
-        <p className="text-center text-xs text-slate-600 mt-6">
-          By signing in, you agree to our terms of service.
-        </p>
+            {/* Divider */}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="flex-1 h-px bg-white/8" />
+              <span className="text-xs text-slate-600">or with email</span>
+              <div className="flex-1 h-px bg-white/8" />
+            </div>
+
+            {/* Email form */}
+            <form onSubmit={handleDevLogin} className="space-y-4">
+              {tab === "signup" && (
+                <div>
+                  <label className="block text-xs font-medium text-slate-400 mb-1.5">Full Name</label>
+                  <input
+                    id="signup-name"
+                    type="text"
+                    placeholder="John Smith"
+                    className="input-field"
+                  />
+                </div>
+              )}
+
+              <div>
+                <label className="block text-xs font-medium text-slate-400 mb-1.5">Email Address</label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                  <input
+                    id="login-email"
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="you@company.com"
+                    required
+                    className="input-field pl-11"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-xs font-medium text-slate-400">Password</label>
+                  {tab === "login" && (
+                    <Link href="#" className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors">
+                      Forgot password?
+                    </Link>
+                  )}
+                </div>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                  <input
+                    id="login-password"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="input-field pl-11 pr-11"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors"
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {tab === "signup" && (
+                <label className="flex items-start gap-2 cursor-pointer">
+                  <input type="checkbox" required className="mt-0.5 accent-emerald-500" />
+                  <span className="text-xs text-slate-400">
+                    I agree to the{" "}
+                    <Link href="#" className="text-emerald-400 hover:underline">Terms of Service</Link>
+                    {" "}and{" "}
+                    <Link href="#" className="text-emerald-400 hover:underline">Privacy Policy</Link>
+                  </span>
+                </label>
+              )}
+
+              <button
+                id="login-submit"
+                type="submit"
+                disabled={loading}
+                className="btn-primary w-full flex items-center justify-center gap-2 py-3.5 text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                {loading ? (
+                  <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Loading…</>
+                ) : (
+                  <>{tab === "login" ? "Sign In" : "Create Account"} <ArrowRight className="w-4 h-4" /></>
+                )}
+              </button>
+            </form>
+
+            <p className="text-center text-xs text-slate-600 mt-5">
+              {tab === "login" ? "Don't have an account? " : "Already have an account? "}
+              <button
+                onClick={() => setTab(tab === "login" ? "signup" : "login")}
+                className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
+              >
+                {tab === "login" ? "Sign up free" : "Sign in"}
+              </button>
+            </p>
+          </div>
+
+          {/* Trust note */}
+          <p className="text-center text-xs text-slate-600 mt-5 flex items-center justify-center gap-1.5">
+            <Shield className="w-3.5 h-3.5 text-slate-600" />
+            Secured by enterprise-grade encryption
+          </p>
+        </div>
       </div>
     </div>
   );
