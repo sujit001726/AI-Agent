@@ -69,7 +69,7 @@ async function extractEmailsFromUrl(url: string): Promise<EnrichmentResult | nul
     const filtered = matches.filter(isValidEmail).filter(isNotImageEmail);
     if (filtered.length > 0) {
       // Prefer info@, contact@, hello@ over personal emails
-      const preferred = filtered.find((e) => /^(info|contact|hello|support|admin)@/i.test(e));
+      const preferred = filtered.find((e) => /^(info|contact|hello|support|admin|sales|team)@/i.test(e));
       return {
         email: preferred || filtered[0],
         confidence: preferred ? 0.85 : 0.65,
