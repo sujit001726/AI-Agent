@@ -43,7 +43,7 @@ export async function searchPlaces(
     headers: {
       'Content-Type': 'application/json',
       'X-Goog-Api-Key': apiKey,
-      'X-Goog-FieldMask': FIELD_MASK,
+      'X-Goog-FieldMask': PLACES_FIELD_MASK,
     },
     body: JSON.stringify(body),
   });
