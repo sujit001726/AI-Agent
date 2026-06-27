@@ -447,42 +447,42 @@ export default function HomePage() {
       </section>
 
       {/* ============ SEARCH SECTION ============ */}
-      <section id="search-section" className="py-16 px-4">
+      <section id="search-section" className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Start a Campaign
             </h2>
-            <p className="text-slate-400">Describe what you're looking for in plain English</p>
+            <p className="text-slate-400 text-lg">Describe what you're looking for in plain English</p>
           </div>
 
           {/* Main search card */}
-          <div className="glass-card rounded-2xl p-5 sm:p-7 mb-4 glow-brand">
+          <div className="glass-card rounded-3xl p-6 sm:p-8 mb-6 glow-brand max-w-3xl mx-auto">
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                  <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                   <input
                     id="instruction-input"
                     value={instruction}
                     onChange={e => setInstruction(e.target.value)}
                     placeholder={EXAMPLE_PROMPTS[placeholderIdx]}
                     disabled={loading}
-                    className="input-field pl-11"
-                    style={{ height: "52px" }}
+                    className="input-field pl-14 text-lg"
+                    style={{ height: "60px", borderRadius: "1rem" }}
                   />
                 </div>
                 <button
                   id="start-campaign"
                   type="submit"
                   disabled={loading || !instruction.trim()}
-                  className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none px-7"
-                  style={{ height: "52px" }}
+                  className="btn-primary flex items-center justify-center gap-3 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed px-8 text-lg font-semibold"
+                  style={{ height: "60px", borderRadius: "1rem" }}
                 >
                   {loading ? (
-                    <><Loader2 className="w-4 h-4 animate-spin" /> Parsing…</>
+                    <><Loader2 className="w-5 h-5 animate-spin" /> Parsing…</>
                   ) : (
-                    <>Start Campaign <ArrowRight className="w-4 h-4" /></>
+                    <>Start Campaign <ArrowRight className="w-5 h-5" /></>
                   )}
                 </button>
               </div>
@@ -496,13 +496,13 @@ export default function HomePage() {
             </form>
 
             {/* Example chips */}
-            <div className="flex flex-wrap gap-2 mt-5">
-              <span className="text-xs text-slate-600 self-center">Try:</span>
+            <div className="flex flex-wrap justify-center items-center gap-3 mt-8">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest mr-1">Try:</span>
               {EXAMPLE_PROMPTS.map(p => (
                 <button
                   key={p}
                   onClick={() => setInstruction(p)}
-                  className="text-xs text-slate-400 hover:text-white bg-surface-800 hover:bg-surface-700 border border-white/5 hover:border-emerald-500/30 rounded-lg px-3 py-1.5 transition-all"
+                  className="text-[13px] text-slate-300 hover:text-white bg-surface-800/80 hover:bg-surface-700 border border-white/10 hover:border-emerald-500/50 rounded-full px-4 py-2 transition-all leading-snug shadow-sm"
                 >
                   {p}
                 </button>
@@ -511,16 +511,16 @@ export default function HomePage() {
           </div>
 
           {/* How it works mini */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mt-10">
             {[
               { n: "1", icon: "🧠", title: "AI Parsing", desc: "Claude extracts your intent" },
               { n: "2", icon: "🗺️", title: "Map Discovery", desc: "Google Maps finds businesses" },
               { n: "3", icon: "📧", title: "Outreach", desc: "Personalized emails sent" },
             ].map(step => (
-              <div key={step.n} className="glass-card rounded-xl p-4 text-center card-hover">
-                <div className="text-xl mb-1.5">{step.icon}</div>
-                <div className="text-xs font-semibold text-white mb-1">{step.title}</div>
-                <div className="text-[11px] text-slate-500 leading-snug">{step.desc}</div>
+              <div key={step.n} className="glass-card rounded-2xl p-5 text-center card-hover border border-white/5 bg-surface-900/40">
+                <div className="text-2xl mb-3">{step.icon}</div>
+                <div className="text-sm font-bold text-white mb-1.5 tracking-wide">{step.title}</div>
+                <div className="text-xs text-slate-400 leading-relaxed">{step.desc}</div>
               </div>
             ))}
           </div>
