@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     title: "LeadFlow AI — Find Leads Worldwide",
     description: "Find any business anywhere on Google Maps. AI-powered lead generation in seconds.",
     type: "website",
+    siteName: "LeadFlow AI",
   },
 };
 
