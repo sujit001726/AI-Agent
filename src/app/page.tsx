@@ -560,7 +560,7 @@ export default function HomePage() {
               </p>
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-4">
               {campaigns.map(c => {
                 const cfg = statusConfig(c.status);
                 const progress = c.totalLeadsExpected > 0
@@ -573,47 +573,53 @@ export default function HomePage() {
                     key={c.id}
                     id={`campaign-${c.id}`}
                     onClick={() => router.push(`/campaign/${c.id}`)}
-                    className="glass-card rounded-xl p-4 sm:p-5 w-full text-left hover:border-emerald-500/20 transition-all duration-300 group card-hover"
+                    className="glass-card rounded-2xl p-5 sm:p-6 w-full text-left hover:border-emerald-500/30 transition-all duration-300 group card-hover shadow-lg hover:shadow-emerald-500/10"
                   >
-                    <div className="flex items-start justify-between gap-4 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
                       <div className="flex-1 min-w-0">
-                        <p className="text-white font-semibold text-sm truncate group-hover:text-emerald-400 transition-colors">
+                        <p className="text-white font-bold text-base sm:text-lg truncate group-hover:text-emerald-400 transition-colors">
                           {c.instruction}
                         </p>
-                        <div className="flex items-center gap-1.5 mt-1">
-                          <MapPin className="w-3 h-3 text-slate-600" />
-                          <p className="text-slate-500 text-xs">{c.location} · {c.category}</p>
+                        <div className="flex items-center gap-1.5 mt-2">
+                          <MapPin className="w-4 h-4 text-emerald-500/70" />
+                          <p className="text-slate-400 text-sm font-medium">{c.location} <span className="text-slate-600 mx-1">•</span> {c.category}</p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 shrink-0">
-                        <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${cfg.className}`}>
+                      <div className="flex items-center gap-3 shrink-0 self-start">
+                        <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm ${cfg.className}`}>
                           {isActive && <span className="w-1.5 h-1.5 rounded-full bg-current pulse-dot" />}
                           {cfg.label}
                         </span>
-                        <ChevronRight className="w-4 h-4 text-slate-600 group-hover:text-emerald-400 transition-colors" />
+                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-emerald-500/10 transition-colors">
+                          <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500 mb-3">
-                      <span className="flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                        {c.leadsDiscoveredCount} discovered
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-400 mb-4 bg-surface-900/40 rounded-xl p-3 border border-white/5">
+                      <span className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                        </div>
+                        <span className="font-semibold text-white">{c.leadsDiscoveredCount}</span> discovered
                       </span>
-                      <span className="flex items-center gap-1">
-                        <Zap className="w-3 h-3 text-blue-500" />
-                        {c.leadsEnrichedCount} enriched
+                      <span className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-blue-500/10 flex items-center justify-center">
+                          <Zap className="w-3.5 h-3.5 text-blue-500" />
+                        </div>
+                        <span className="font-semibold text-white">{c.leadsEnrichedCount}</span> enriched
                       </span>
-                      <span className="flex items-center gap-1 ml-auto">
-                        <Clock className="w-3 h-3" />
-                        {new Date(c.createdAt).toLocaleDateString()}
+                      <span className="flex items-center gap-1.5 ml-auto text-xs text-slate-500 font-medium">
+                        <Clock className="w-3.5 h-3.5" />
+                        {new Date(c.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                       </span>
                     </div>
 
                     {c.totalLeadsExpected > 0 && (
-                      <div className="h-1 bg-surface-700 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-surface-700 rounded-full overflow-hidden shadow-inner">
                         <div
                           className={`h-full rounded-full transition-all duration-700 ${isActive ? "progress-bar" : "bg-emerald-500"}`}
-                          style={{ width: `${progress}%` }}
+                          style={{ width: `${progress}%`, boxShadow: isActive ? "0 0 10px rgba(16,185,129,0.5)" : "none" }}
                         />
                       </div>
                     )}
