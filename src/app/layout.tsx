@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   description: "AI-powered lead generation platform. Discover businesses on Google Maps, enrich contact info automatically, and send personalized outreach at scale.",
   keywords: ["lead generation", "AI", "Google Maps", "business discovery", "email outreach", "sales automation", "CRM", "cold email", "B2B leads"],
   authors: [{ name: "LeadFlow AI Team" }],
+  twitter: {
+    card: "summary_large_image",
+    title: "LeadFlow AI — Find Leads Worldwide",
+    description: "AI-powered lead generation. Discover, enrich and email businesses at scale.",
+  },
   openGraph: {
     title: "LeadFlow AI — Find Leads Worldwide",
     description: "Find any business anywhere on Google Maps. AI-powered lead generation in seconds.",
