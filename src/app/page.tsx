@@ -446,188 +446,206 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ SEARCH SECTION ============ */}
-      <section id="search-section" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Start a Campaign
-            </h2>
-            <p className="text-slate-400 text-lg">Describe what you're looking for in plain English</p>
-          </div>
+      {/* ============ MAIN DASHBOARD SECTION ============ */}
+      <section id="search-section" className="py-12 px-4 max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          
+          {/* LEFT COLUMN: START CAMPAIGN */}
+          <div className="lg:col-span-5 xl:col-span-6 flex flex-col">
+            <div className="sticky top-28">
+              <div className="mb-8">
+                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+                  Start a Campaign
+                </h2>
+                <p className="text-slate-400 text-lg">Describe what you're looking for in plain English</p>
+              </div>
 
-          {/* Main search card */}
-          <div className="glass-card rounded-3xl p-6 sm:p-8 mb-6 glow-brand max-w-3xl mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
-                  <input
-                    id="instruction-input"
-                    value={instruction}
-                    onChange={e => setInstruction(e.target.value)}
-                    placeholder={EXAMPLE_PROMPTS[placeholderIdx]}
-                    disabled={loading}
-                    className="input-field pl-14 text-lg"
-                    style={{ height: "60px", borderRadius: "1rem" }}
-                  />
-                </div>
-                <button
-                  id="start-campaign"
-                  type="submit"
-                  disabled={loading || !instruction.trim()}
-                  className="btn-primary flex items-center justify-center gap-3 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed px-8 text-lg font-semibold"
-                  style={{ height: "60px", borderRadius: "1rem" }}
-                >
-                  {loading ? (
-                    <><Loader2 className="w-5 h-5 animate-spin" /> Parsing…</>
-                  ) : (
-                    <>Start Campaign <ArrowRight className="w-5 h-5" /></>
+              {/* Main search card */}
+              <div className="glass-card rounded-3xl p-6 sm:p-8 mb-8 glow-brand">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="flex flex-col gap-4">
+                    <div className="relative">
+                      <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                      <input
+                        id="instruction-input"
+                        value={instruction}
+                        onChange={e => setInstruction(e.target.value)}
+                        placeholder={EXAMPLE_PROMPTS[placeholderIdx]}
+                        disabled={loading}
+                        className="input-field pl-14 text-lg w-full"
+                        style={{ height: "60px", borderRadius: "1rem" }}
+                      />
+                    </div>
+                    <button
+                      id="start-campaign"
+                      type="submit"
+                      disabled={loading || !instruction.trim()}
+                      className="btn-primary flex items-center justify-center gap-3 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed text-lg font-semibold w-full"
+                      style={{ height: "60px", borderRadius: "1rem" }}
+                    >
+                      {loading ? (
+                        <><Loader2 className="w-5 h-5 animate-spin" /> Parsing…</>
+                      ) : (
+                        <>Start Campaign <ArrowRight className="w-5 h-5" /></>
+                      )}
+                    </button>
+                  </div>
+
+                  {error && (
+                    <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 flex items-center gap-2 mt-4">
+                      <X className="w-4 h-4 shrink-0" />
+                      {error}
+                    </p>
                   )}
-                </button>
-              </div>
+                </form>
 
-              {error && (
-                <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 flex items-center gap-2">
-                  <X className="w-4 h-4 shrink-0" />
-                  {error}
-                </p>
-              )}
-            </form>
-
-            {/* Example chips */}
-            <div className="flex flex-wrap justify-center items-center gap-3 mt-8">
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest mr-1">Try:</span>
-              {EXAMPLE_PROMPTS.map(p => (
-                <button
-                  key={p}
-                  onClick={() => setInstruction(p)}
-                  className="text-[13px] text-slate-300 hover:text-white bg-surface-800/80 hover:bg-surface-700 border border-white/10 hover:border-emerald-500/50 rounded-full px-4 py-2 transition-all leading-snug shadow-sm"
-                >
-                  {p}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* How it works mini */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mt-10">
-            {[
-              { n: "1", icon: "🧠", title: "AI Parsing", desc: "Claude extracts your intent" },
-              { n: "2", icon: "🗺️", title: "Map Discovery", desc: "Google Maps finds businesses" },
-              { n: "3", icon: "📧", title: "Outreach", desc: "Personalized emails sent" },
-            ].map(step => (
-              <div key={step.n} className="glass-card rounded-2xl p-5 text-center card-hover border border-white/5 bg-surface-900/40">
-                <div className="text-2xl mb-3">{step.icon}</div>
-                <div className="text-sm font-bold text-white mb-1.5 tracking-wide">{step.title}</div>
-                <div className="text-xs text-slate-400 leading-relaxed">{step.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ CAMPAIGNS SECTION ============ */}
-      <section className="py-8 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              <BarChart3 className="w-5 h-5 text-emerald-400" />
-              Recent Campaigns
-            </h2>
-            {campaigns.length > 0 && (
-              <span className="text-xs text-slate-500 glass px-3 py-1 rounded-full">
-                {campaigns.length} campaign{campaigns.length !== 1 ? "s" : ""}
-              </span>
-            )}
-          </div>
-
-          {fetchingCampaigns ? (
-            <div className="space-y-3">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="glass-card rounded-xl p-5">
-                  <div className="skeleton h-4 w-2/3 mb-3" />
-                  <div className="skeleton h-3 w-1/3" />
+                {/* Example chips */}
+                <div className="mt-6">
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Try asking for:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {EXAMPLE_PROMPTS.slice(0, 3).map(p => (
+                      <button
+                        key={p}
+                        onClick={() => setInstruction(p)}
+                        className="text-xs text-slate-300 hover:text-white bg-surface-800/80 hover:bg-surface-700 border border-white/10 hover:border-emerald-500/50 rounded-lg px-3 py-2 transition-all leading-snug shadow-sm text-left w-full sm:w-auto"
+                      >
+                        {p}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
-          ) : campaigns.length === 0 ? (
-            <div className="glass-card rounded-2xl p-16 text-center">
-              <div className="text-5xl mb-4">🚀</div>
-              <h3 className="text-lg font-semibold text-white mb-2">No campaigns yet</h3>
-              <p className="text-slate-500 text-sm max-w-xs mx-auto">
-                Type an instruction above to start discovering leads from Google Maps!
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {campaigns.map(c => {
-                const cfg = statusConfig(c.status);
-                const progress = c.totalLeadsExpected > 0
-                  ? Math.min(Math.round((c.leadsEnrichedCount / c.totalLeadsExpected) * 100), 100)
-                  : 0;
-                const isActive = c.status === "DISCOVERING" || c.status === "ENRICHING";
+              </div>
 
-                return (
-                  <button
-                    key={c.id}
-                    id={`campaign-${c.id}`}
-                    onClick={() => router.push(`/campaign/${c.id}`)}
-                    className="glass-card rounded-2xl p-5 sm:p-6 w-full text-left hover:border-emerald-500/30 transition-all duration-300 group card-hover shadow-lg hover:shadow-emerald-500/10"
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
-                      <div className="flex-1 min-w-0">
-                        <p className="text-white font-bold text-base sm:text-lg truncate group-hover:text-emerald-400 transition-colors">
-                          {c.instruction}
-                        </p>
-                        <div className="flex items-center gap-1.5 mt-2">
-                          <MapPin className="w-4 h-4 text-emerald-500/70" />
-                          <p className="text-slate-400 text-sm font-medium">{c.location} <span className="text-slate-600 mx-1">•</span> {c.category}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3 shrink-0 self-start">
-                        <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm ${cfg.className}`}>
-                          {isActive && <span className="w-1.5 h-1.5 rounded-full bg-current pulse-dot" />}
-                          {cfg.label}
-                        </span>
-                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-emerald-500/10 transition-colors">
-                          <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
-                        </div>
-                      </div>
+              {/* How it works mini */}
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { n: "1", icon: "🧠", title: "AI Parsing", desc: "Extract intent" },
+                  { n: "2", icon: "🗺️", title: "Discovery", desc: "Find on Maps" },
+                  { n: "3", icon: "📧", title: "Outreach", desc: "Send emails" },
+                ].map(step => (
+                  <div key={step.n} className="glass-card rounded-xl p-4 text-center card-hover border border-white/5 bg-surface-900/40">
+                    <div className="text-xl mb-2">{step.icon}</div>
+                    <div className="text-xs font-bold text-white mb-1 tracking-wide">{step.title}</div>
+                    <div className="text-[10px] text-slate-400 leading-relaxed hidden sm:block">{step.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: RECENT CAMPAIGNS */}
+          <div className="lg:col-span-7 xl:col-span-6 flex flex-col">
+            <div className="glass border border-white/5 rounded-3xl p-6 sm:p-8 h-full min-h-[600px] bg-surface-900/20">
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/5">
+                <div>
+                  <h2 className="text-2xl font-bold text-white flex items-center gap-2 mb-1">
+                    <BarChart3 className="w-6 h-6 text-emerald-400" />
+                    Your Campaigns
+                  </h2>
+                  <p className="text-slate-400 text-sm">Monitor discovery and enrichment progress</p>
+                </div>
+                {campaigns.length > 0 && (
+                  <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot" />
+                    {campaigns.length} Active
+                  </span>
+                )}
+              </div>
+
+              {fetchingCampaigns ? (
+                <div className="space-y-4">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="glass-card rounded-2xl p-5">
+                      <div className="skeleton h-5 w-2/3 mb-3" />
+                      <div className="skeleton h-4 w-1/3 mb-4" />
+                      <div className="skeleton h-2 w-full" />
                     </div>
+                  ))}
+                </div>
+              ) : campaigns.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-64 text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-surface-800 flex items-center justify-center mb-4 border border-white/5">
+                    <Bot className="w-8 h-8 text-slate-500" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">No campaigns yet</h3>
+                  <p className="text-slate-500 text-sm max-w-[250px] mx-auto">
+                    Use the panel on the left to start discovering leads from Google Maps.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-4 overflow-y-auto pr-2 custom-scrollbar" style={{ maxHeight: "calc(100vh - 250px)" }}>
+                  {campaigns.map(c => {
+                    const cfg = statusConfig(c.status);
+                    const progress = c.totalLeadsExpected > 0
+                      ? Math.min(Math.round((c.leadsEnrichedCount / c.totalLeadsExpected) * 100), 100)
+                      : 0;
+                    const isActive = c.status === "DISCOVERING" || c.status === "ENRICHING";
 
-                    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-400 mb-4 bg-surface-900/40 rounded-xl p-3 border border-white/5">
-                      <span className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                        </div>
-                        <span className="font-semibold text-white">{c.leadsDiscoveredCount}</span> discovered
-                      </span>
-                      <span className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full bg-blue-500/10 flex items-center justify-center">
-                          <Zap className="w-3.5 h-3.5 text-blue-500" />
-                        </div>
-                        <span className="font-semibold text-white">{c.leadsEnrichedCount}</span> enriched
-                      </span>
-                      <span className="flex items-center gap-1.5 ml-auto text-xs text-slate-500 font-medium">
-                        <Clock className="w-3.5 h-3.5" />
-                        {new Date(c.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
-                      </span>
-                    </div>
+                    return (
+                      <button
+                        key={c.id}
+                        id={`campaign-${c.id}`}
+                        onClick={() => router.push(`/campaign/${c.id}`)}
+                        className="glass-card rounded-2xl p-5 w-full text-left hover:border-emerald-500/30 transition-all duration-300 group card-hover border border-white/5 bg-surface-950/40 relative overflow-hidden"
+                      >
+                        {/* Active glow */}
+                        {isActive && (
+                          <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
+                        )}
 
-                    {c.totalLeadsExpected > 0 && (
-                      <div className="h-1.5 bg-surface-700 rounded-full overflow-hidden shadow-inner">
-                        <div
-                          className={`h-full rounded-full transition-all duration-700 ${isActive ? "progress-bar" : "bg-emerald-500"}`}
-                          style={{ width: `${progress}%`, boxShadow: isActive ? "0 0 10px rgba(16,185,129,0.5)" : "none" }}
-                        />
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-white font-semibold text-base truncate group-hover:text-emerald-400 transition-colors">
+                              {c.instruction}
+                            </p>
+                            <div className="flex items-center gap-1.5 mt-1.5">
+                              <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                              <p className="text-slate-400 text-xs font-medium">{c.location} <span className="text-slate-600 mx-1">•</span> {c.category}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0 self-start">
+                            <span className={`inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm ${cfg.className}`}>
+                              {isActive && <span className="w-1.5 h-1.5 rounded-full bg-current pulse-dot" />}
+                              {cfg.label}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 mb-3 bg-surface-800/50 rounded-lg p-2.5 border border-white/5">
+                          <div className="flex items-center gap-4">
+                            <span className="flex items-center gap-1.5">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                              <span className="font-semibold text-white">{c.leadsDiscoveredCount}</span> 
+                              <span className="hidden sm:inline">found</span>
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Zap className="w-3.5 h-3.5 text-blue-500" />
+                              <span className="font-semibold text-white">{c.leadsEnrichedCount}</span>
+                              <span className="hidden sm:inline">enriched</span>
+                            </span>
+                          </div>
+                          <span className="flex items-center gap-1 text-[10px] text-slate-500">
+                            <Clock className="w-3 h-3" />
+                            {new Date(c.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                          </span>
+                        </div>
+
+                        {c.totalLeadsExpected > 0 && (
+                          <div className="h-1 bg-surface-700 rounded-full overflow-hidden">
+                            <div
+                              className={`h-full rounded-full transition-all duration-700 ${isActive ? "progress-bar" : "bg-emerald-500"}`}
+                              style={{ width: `${progress}%`, boxShadow: isActive ? "0 0 10px rgba(16,185,129,0.5)" : "none" }}
+                            />
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          )}
+          </div>
+          
         </div>
       </section>
 
