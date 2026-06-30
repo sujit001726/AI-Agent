@@ -19,6 +19,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://leadflow.ai'),
   title: "LeadFlow AI — Find Leads Worldwide with Google Maps",
   description: "AI-powered lead generation platform. Discover businesses on Google Maps, enrich contact info automatically, and send personalized outreach at scale.",
   keywords: ["lead generation", "AI", "Google Maps", "business discovery", "email outreach", "sales automation", "CRM", "cold email", "B2B leads"],
