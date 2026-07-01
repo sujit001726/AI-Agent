@@ -28,8 +28,8 @@ export default function ContactPage() {
       <nav className="fixed top-0 left-0 right-0 z-40 glass border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-              <Zap className="w-4.5 h-4.5 text-emerald-400" />
+            <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+              <Zap className="w-4.5 h-4.5 text-indigo-400" />
             </div>
             <span className="font-bold text-white text-lg">LeadFlow</span>
           </Link>
@@ -43,7 +43,7 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="pt-32 pb-10 px-4 text-center">
         <div className="max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-6">
+          <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-6">
             <MessageSquare className="w-3.5 h-3.5" />
             Get in Touch
           </div>
@@ -64,8 +64,8 @@ export default function ContactPage() {
                 <h3 className="text-white font-bold text-lg mb-5">Contact Information</h3>
                 <div className="space-y-5">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-emerald-400" />
+                    <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center shrink-0">
+                      <Mail className="w-5 h-5 text-indigo-400" />
                     </div>
                     <div>
                       <div className="text-white font-semibold text-sm">Email</div>
@@ -124,7 +124,7 @@ export default function ContactPage() {
                     <Link key={item.l} href={item.h}
                       className="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors group">
                       <span className="text-slate-400 text-sm group-hover:text-white transition-colors">{item.l}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-emerald-400 transition-colors" />
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-indigo-400 transition-colors" />
                     </Link>
                   ))}
                 </div>
@@ -136,8 +136,8 @@ export default function ContactPage() {
               <div className="glass-card rounded-2xl p-7 glow-brand-sm">
                 {sent ? (
                   <div className="text-center py-12">
-                    <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mx-auto mb-5">
-                      <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+                    <div className="w-16 h-16 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mx-auto mb-5">
+                      <CheckCircle2 className="w-8 h-8 text-indigo-400" />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
                     <p className="text-slate-400 mb-6">Thanks for reaching out. We&#39;ll get back to you within 24 hours.</p>
