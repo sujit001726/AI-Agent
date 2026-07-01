@@ -393,13 +393,13 @@ export default function HomePage() {
         </div>
 
         {/* Glow orbs */}
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full opacity-[0.1] blur-[100px] pointer-events-none bg-emerald-500" style={{ animation: "glow-pulse 8s ease-in-out infinite" }} />
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full opacity-[0.1] blur-[100px] pointer-events-none bg-indigo-500" style={{ animation: "glow-pulse 8s ease-in-out infinite" }} />
 
         <div className="max-w-5xl mx-auto w-full text-center relative z-10">
-          <div className="inline-flex items-center justify-center gap-2 bg-emerald-500/10 border border-emerald-500/30 backdrop-blur-md rounded-full px-5 py-2 text-xs sm:text-sm font-semibold text-emerald-300 mb-8 sm:mb-10 animate-slide-up shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+          <div className="inline-flex items-center justify-center gap-2 bg-indigo-500/10 border border-indigo-500/30 backdrop-blur-md rounded-full px-5 py-2 text-xs sm:text-sm font-semibold text-indigo-300 mb-8 sm:mb-10 animate-slide-up shadow-[0_0_20px_rgba(99,102,241,0.2)]">
             <Sparkles className="w-4 h-4" />
             The Ultimate AI Lead Generation Platform
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot ml-1" />
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 pulse-dot ml-1" />
           </div>
 
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold text-white leading-[1.05] mb-8 tracking-tight drop-shadow-2xl"
@@ -417,7 +417,7 @@ export default function HomePage() {
             <button
               id="hero-start-cta"
               onClick={() => document.getElementById("search-section")?.scrollIntoView({ behavior: "smooth" })}
-              className="btn-primary flex items-center justify-center gap-2 text-lg px-10 py-5 w-full sm:w-auto shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:scale-105 transition-transform"
+              className="btn-primary flex items-center justify-center gap-2 text-lg px-10 py-5 w-full sm:w-auto shadow-[0_0_40px_rgba(99,102,241,0.3)] hover:scale-105 transition-transform"
             >
               <Zap className="w-5 h-5" />
               Start Finding Leads
@@ -435,8 +435,8 @@ export default function HomePage() {
           <div className="flex flex-wrap justify-center gap-8 sm:gap-14 pt-10 border-t border-white/10">
             {STATS.map(({ value, label, icon: Icon }) => (
               <div key={label} className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mb-1 backdrop-blur-sm">
-                  <Icon className="w-6 h-6 text-emerald-400" />
+                <div className="w-12 h-12 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center mb-1 backdrop-blur-sm">
+                  <Icon className="w-6 h-6 text-indigo-400" />
                 </div>
                 <div className="text-white font-extrabold text-2xl sm:text-3xl leading-none drop-shadow-md">{value}</div>
                 <div className="text-slate-400 text-sm font-medium tracking-wide uppercase">{label}</div>
@@ -506,7 +506,7 @@ export default function HomePage() {
                     <button
                       key={p}
                       onClick={() => setInstruction(p)}
-                      className="text-xs text-slate-300 hover:text-white bg-surface-800/80 hover:bg-surface-700 border border-white/10 hover:border-emerald-500/50 rounded-lg px-3 py-2 transition-all leading-snug shadow-sm text-left"
+                      className="text-xs text-slate-300 hover:text-white bg-surface-800/80 hover:bg-surface-700 border border-white/10 hover:border-indigo-500/50 rounded-lg px-3 py-2 transition-all leading-snug shadow-sm text-left"
                     >
                       {p}
                     </button>
@@ -569,13 +569,13 @@ export default function HomePage() {
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="glass-card rounded-3xl p-10 sm:p-16 text-center relative overflow-hidden"
-            style={{ boxShadow: "0 0 80px rgba(52,211,153,0.1)" }}>
+            style={{ boxShadow: "0 0 80px rgba(99,102,241,0.1)" }}>
             {/* Decorative orbs */}
-            <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
             <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-6">
+              <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-6">
                 <Zap className="w-3.5 h-3.5" />
                 Get Started Free
               </div>

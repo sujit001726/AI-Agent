@@ -6,28 +6,32 @@
 }
 
 @theme {
-  --color-brand-50: #f0fdf9;
-  --color-brand-100: #ccfbef;
-  --color-brand-400: #34d399;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-brand-900: #064e3b;
+  /* Brand: Indigo */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-900: #312e81;
 
-  --color-accent-400: #818cf8;
-  --color-accent-500: #6366f1;
-  --color-accent-600: #4f46e5;
+  /* Accent: Purple/Violet */
+  --color-accent-400: #c084fc;
+  --color-accent-500: #a855f7;
+  --color-accent-600: #9333ea;
 
+  /* Cyan */
   --color-cyan-400: #22d3ee;
   --color-cyan-500: #06b6d4;
 
-  --color-surface-950: #020b18;
-  --color-surface-900: #0d1b2a;
-  --color-surface-800: #132337;
-  --color-surface-700: #1c3454;
-  --color-surface-600: #264773;
+  /* Surface: Deep Zinc/Slate */
+  --color-surface-950: #09090b;
+  --color-surface-900: #18181b;
+  --color-surface-800: #27272a;
+  --color-surface-700: #3f3f46;
+  --color-surface-600: #52525b;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
@@ -56,19 +60,19 @@ body {
 
 /* ===================== GLASS ===================== */
 .glass {
-  background: rgba(13, 27, 42, 0.7);
+  background: rgba(24, 24, 27, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 .glass-light {
-  background: rgba(19, 35, 55, 0.5);
+  background: rgba(39, 39, 42, 0.5);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .glass-card {
-  background: linear-gradient(135deg, rgba(13,27,42,0.9) 0%, rgba(19,35,55,0.8) 100%);
+  background: linear-gradient(135deg, rgba(24,24,27,0.9) 0%, rgba(39,39,42,0.8) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.07);
@@ -76,19 +80,19 @@ body {
 
 /* ===================== GRADIENT TEXT ===================== */
 .gradient-text {
-  background: linear-gradient(135deg, #34d399 0%, #22d3ee 50%, #818cf8 100%);
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #22d3ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .gradient-text-green {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .gradient-text-blue {
-  background: linear-gradient(135deg, #818cf8 0%, #22d3ee 100%);
+  background: linear-gradient(135deg, #c084fc 0%, #22d3ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -97,17 +101,17 @@ body {
 /* ===================== ANIMATED BACKGROUNDS ===================== */
 .bg-mesh {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(52, 211, 153, 0.07) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 100%, rgba(34, 211, 238, 0.05) 0%, transparent 50%),
-    #020b18;
+    #09090b;
 }
 
 .bg-hero {
   background:
-    radial-gradient(ellipse at 60% 0%, rgba(52, 211, 153, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse at 0% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-    #020b18;
+    radial-gradient(ellipse at 60% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 0% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+    #09090b;
 }
 
 /* ===================== GRID PATTERN ===================== */
@@ -210,7 +214,7 @@ body {
 
 /* ===================== BUTTON STYLES ===================== */
 .btn-primary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   color: white;
   font-weight: 600;
   padding: 0.75rem 1.75rem;
@@ -218,7 +222,7 @@ body {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 0 30px -10px rgba(52, 211, 153, 0.45);
+  box-shadow: 0 0 30px -10px rgba(99, 102, 241, 0.45);
   position: relative;
   overflow: hidden;
 }
@@ -231,11 +235,11 @@ body {
   transition: opacity 0.2s;
 }
 .btn-primary:hover::before { opacity: 1; }
-.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 40px -8px rgba(52, 211, 153, 0.6); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 40px -8px rgba(99, 102, 241, 0.6); }
 .btn-primary:active { transform: translateY(0); }
 
 .btn-secondary {
-  background: rgba(19, 35, 55, 0.8);
+  background: rgba(39, 39, 42, 0.8);
   color: #e2e8f0;
   font-weight: 500;
   padding: 0.75rem 1.75rem;
@@ -245,8 +249,8 @@ body {
   transition: all 0.2s ease;
 }
 .btn-secondary:hover {
-  background: rgba(28, 52, 84, 0.8);
-  border-color: rgba(52, 211, 153, 0.3);
+  background: rgba(63, 63, 70, 0.8);
+  border-color: rgba(99, 102, 241, 0.3);
   color: white;
 }
 
@@ -265,7 +269,7 @@ body {
 /* ===================== INPUT STYLES ===================== */
 .input-field {
   width: 100%;
-  background: rgba(19, 35, 55, 0.8);
+  background: rgba(39, 39, 42, 0.8);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 0.875rem;
   padding: 0.875rem 1.25rem;
@@ -276,8 +280,8 @@ body {
 }
 .input-field::placeholder { color: #475569; }
 .input-field:focus {
-  border-color: rgba(52, 211, 153, 0.5);
-  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
 /* ===================== CARD HOVER EFFECTS ===================== */
@@ -286,18 +290,18 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  border-color: rgba(52, 211, 153, 0.25) !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px rgba(52,211,153,0.1);
+  border-color: rgba(99, 102, 241, 0.25) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px rgba(99, 102, 241, 0.1);
 }
 
 /* ===================== CHATBOT ===================== */
 .chat-bubble-user {
-  background: linear-gradient(135deg, #059669, #10b981);
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
   color: white;
   border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
 }
 .chat-bubble-bot {
-  background: rgba(19, 35, 55, 0.9);
+  background: rgba(24, 24, 27, 0.9);
   border: 1px solid rgba(255,255,255,0.07);
   border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
 }
@@ -314,7 +318,7 @@ body {
 /* ===================== SECTION DIVIDER ===================== */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(52,211,153,0.3) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.3) 50%, transparent 100%);
 }
 
 /* ===================== FEATURE ICON ===================== */
