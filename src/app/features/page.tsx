@@ -12,9 +12,9 @@ const FEATURES_LIST = [
     icon: Bot,
     title: "Claude AI Parsing",
     desc: "Simply type what you're looking for in plain English. Our Claude AI model understands your intent and extracts the location, business type, quantity, and quality filters automatically.",
-    color: "from-emerald-500/20 to-teal-500/20",
-    border: "border-emerald-500/20",
-    iconColor: "text-emerald-400",
+    color: "from-indigo-500/20 to-violet-500/20",
+    border: "border-indigo-500/20",
+    iconColor: "text-indigo-400",
     points: ["Natural language understanding", "Multi-language support", "Intent extraction", "Smart fallback parser"],
   },
   {
@@ -57,9 +57,9 @@ const FEATURES_LIST = [
     icon: Shield,
     title: "Enterprise Security",
     desc: "Built with security-first principles. Your API keys are encrypted at rest, all data is transmitted over TLS, and we're fully GDPR compliant.",
-    color: "from-teal-500/20 to-cyan-500/20",
-    border: "border-teal-500/20",
-    iconColor: "text-teal-400",
+    color: "from-violet-500/20 to-cyan-500/20",
+    border: "border-violet-500/20",
+    iconColor: "text-violet-400",
     points: ["End-to-end encryption", "GDPR compliant", "SOC 2 certified", "Regular security audits"],
   },
   {
@@ -91,8 +91,8 @@ export default function FeaturesPage() {
       <nav className="fixed top-0 left-0 right-0 z-40 glass border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-              <Zap className="w-4.5 h-4.5 text-emerald-400" />
+            <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+              <Zap className="w-4.5 h-4.5 text-indigo-400" />
             </div>
             <span className="font-bold text-white text-lg">LeadFlow</span>
           </Link>
@@ -136,7 +136,7 @@ export default function FeaturesPage() {
                     <div className="grid grid-cols-2 gap-2">
                       {f.points.map(p => (
                         <div key={p} className="flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                          <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
                           <span className="text-xs text-slate-400">{p}</span>
                         </div>
                       ))}
@@ -155,7 +155,7 @@ export default function FeaturesPage() {
           <p className="text-slate-500 text-sm mb-8">Powered by world-class technologies</p>
           <div className="flex flex-wrap justify-center gap-4">
             {["Google Maps API", "Claude AI", "Resend", "PostgreSQL", "Redis", "NextAuth", "Prisma ORM", "BullMQ"].map(tech => (
-              <div key={tech} className="glass px-4 py-2 rounded-xl text-slate-400 text-sm font-medium border border-white/5 hover:border-emerald-500/20 hover:text-white transition-all">
+              <div key={tech} className="glass px-4 py-2 rounded-xl text-slate-400 text-sm font-medium border border-white/5 hover:border-indigo-500/20 hover:text-white transition-all">
                 {tech}
               </div>
             ))}
