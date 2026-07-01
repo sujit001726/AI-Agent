@@ -53,9 +53,9 @@ body {
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 
 /* ===================== GLOW ===================== */
-.glow-brand { box-shadow: 0 0 60px -15px rgba(52, 211, 153, 0.4); }
-.glow-brand-sm { box-shadow: 0 0 30px -10px rgba(52, 211, 153, 0.45); }
-.glow-accent { box-shadow: 0 0 60px -15px rgba(99, 102, 241, 0.4); }
+.glow-brand { box-shadow: 0 0 60px -15px rgba(99, 102, 241, 0.4); }
+.glow-brand-sm { box-shadow: 0 0 30px -10px rgba(99, 102, 241, 0.45); }
+.glow-accent { box-shadow: 0 0 60px -15px rgba(168, 85, 247, 0.4); }
 .glow-cyan { box-shadow: 0 0 40px -10px rgba(34, 211, 238, 0.3); }
 
 /* ===================== GLASS ===================== */
@@ -195,7 +195,7 @@ body {
 
 /* ===================== PROGRESS BAR ===================== */
 .progress-bar {
-  background: linear-gradient(90deg, #059669 0%, #34d399 40%, #059669 60%, #059669 100%);
+  background: linear-gradient(90deg, #4f46e5 0%, #818cf8 40%, #4f46e5 60%, #4f46e5 100%);
   background-size: 200% auto;
   animation: shimmer 2s linear infinite;
 }
@@ -347,14 +347,14 @@ body {
 
 /* ===================== STATS ===================== */
 .stat-card {
-  background: linear-gradient(135deg, rgba(13,27,42,0.9), rgba(19,35,55,0.8));
+  background: linear-gradient(135deg, rgba(24,24,27,0.9), rgba(39,39,42,0.8));
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 1rem;
   padding: 1.5rem;
   transition: all 0.3s ease;
 }
 .stat-card:hover {
-  border-color: rgba(52,211,153,0.2);
+  border-color: rgba(99,102,241,0.2);
   transform: translateY(-2px);
 }
 

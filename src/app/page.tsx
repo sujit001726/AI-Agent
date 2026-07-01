@@ -40,9 +40,9 @@ const STATS = [
 const FEATURES = [
   {
     icon: Bot,
-    color: "from-emerald-500/20 to-teal-500/20",
-    border: "border-emerald-500/20",
-    iconColor: "text-emerald-400",
+    color: "from-indigo-500/20 to-violet-500/20",
+    border: "border-indigo-500/20",
+    iconColor: "text-indigo-400",
     title: "AI-Powered Parsing",
     desc: "Claude AI extracts precise location, category, and parameters from any natural language instruction you type."
   },
@@ -80,9 +80,9 @@ const FEATURES = [
   },
   {
     icon: Globe,
-    color: "from-teal-500/20 to-cyan-500/20",
-    border: "border-teal-500/20",
-    iconColor: "text-teal-400",
+    color: "from-violet-500/20 to-cyan-500/20",
+    border: "border-violet-500/20",
+    iconColor: "text-violet-400",
     title: "Global Scale",
     desc: "Operates in 150+ countries. Find any business anywhere on Google Maps in seconds."
   },
@@ -157,8 +157,8 @@ function ChatBot() {
       <button
         id="chatbot-toggle"
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300"
-        style={{ boxShadow: "0 0 30px rgba(16,185,129,0.5)" }}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300"
+        style={{ boxShadow: "0 0 30px rgba(99,102,241,0.5)" }}
         aria-label="Open AI chatbot"
       >
         {open ? <X className="w-6 h-6 text-white" /> : <MessageSquare className="w-6 h-6 text-white" />}
@@ -172,14 +172,14 @@ function ChatBot() {
         <div className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 glass-card rounded-2xl shadow-2xl overflow-hidden border border-white/10"
           style={{ boxShadow: "0 25px 80px rgba(0,0,0,0.5), 0 0 30px rgba(16,185,129,0.15)" }}>
           {/* Header */}
-          <div className="flex items-center gap-3 p-4 border-b border-white/10 bg-gradient-to-r from-emerald-500/10 to-teal-500/10">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/30 to-teal-500/30 border border-emerald-500/30 flex items-center justify-center">
-              <Bot className="w-5 h-5 text-emerald-400" />
+          <div className="flex items-center gap-3 p-4 border-b border-white/10 bg-gradient-to-r from-indigo-500/10 to-violet-500/10">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/30 border border-indigo-500/30 flex items-center justify-center">
+              <Bot className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
               <div className="font-semibold text-white text-sm">LeadFlow AI</div>
-              <div className="flex items-center gap-1.5 text-xs text-emerald-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot" />
+              <div className="flex items-center gap-1.5 text-xs text-indigo-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 pulse-dot" />
                 Online & ready
               </div>
             </div>
@@ -190,8 +190,8 @@ function ChatBot() {
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                 {m.role === "bot" && (
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-500/30 to-teal-500/30 border border-emerald-500/30 flex items-center justify-center mr-2 mt-1 shrink-0">
-                    <Bot className="w-3 h-3 text-emerald-400" />
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500/30 to-violet-500/30 border border-indigo-500/30 flex items-center justify-center mr-2 mt-1 shrink-0">
+                    <Bot className="w-3 h-3 text-indigo-400" />
                   </div>
                 )}
                 <div className={`max-w-[75%] px-3.5 py-2.5 text-sm whitespace-pre-wrap ${m.role === "user" ? "chat-bubble-user" : "chat-bubble-bot text-slate-200"}`}>
@@ -201,8 +201,8 @@ function ChatBot() {
             ))}
             {typing && (
               <div className="flex justify-start">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-500/30 to-teal-500/30 border border-emerald-500/30 flex items-center justify-center mr-2 mt-1 shrink-0">
-                  <Bot className="w-3 h-3 text-emerald-400" />
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500/30 to-violet-500/30 border border-indigo-500/30 flex items-center justify-center mr-2 mt-1 shrink-0">
+                  <Bot className="w-3 h-3 text-indigo-400" />
                 </div>
                 <div className="chat-bubble-bot px-4 py-3 flex gap-1.5 items-center">
                   <div className="w-2 h-2 rounded-full bg-slate-400 typing-dot" />
@@ -222,12 +222,12 @@ function ChatBot() {
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 placeholder="Ask about finding leads..."
-                className="flex-1 bg-surface-800 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-all"
+                className="flex-1 bg-surface-800 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition-all"
               />
               <button
                 id="chatbot-send"
                 type="submit"
-                className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center hover:opacity-90 transition-opacity shrink-0"
+                className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center hover:opacity-90 transition-opacity shrink-0"
               >
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
@@ -254,14 +254,14 @@ function Navbar({ onSignOut }: { onSignOut: () => void }) {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "glass border-b border-white/10 shadow-2xl" : "bg-transparent"}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500/30 to-teal-500/20 border border-emerald-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <Zap className="w-4.5 h-4.5 text-emerald-400" />
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/20 border border-indigo-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Zap className="w-4.5 h-4.5 text-indigo-400" />
           </div>
           <span className="font-bold text-white text-lg tracking-tight">LeadFlow</span>
-          <span className="hidden sm:block text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">AI</span>
+          <span className="hidden sm:block text-[10px] font-semibold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full">AI</span>
         </Link>
 
         {/* Desktop nav */}
@@ -370,13 +370,13 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-mesh">
+    <div className="min-h-screen bg-mesh w-full overflow-x-hidden">
       <div className="grid-pattern absolute inset-0 pointer-events-none opacity-40" />
 
       <Navbar onSignOut={() => router.push("/api/auth/signout")} />
 
       {/* ============ HERO SECTION ============ */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-4 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-20 px-4 overflow-hidden">
         {/* Full Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -446,23 +446,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ MAIN DASHBOARD SECTION ============ */}
-      <section id="search-section" className="py-12 px-4 max-w-4xl mx-auto">
-        <div className="flex flex-col">
-          
-          {/* START CAMPAIGN */}
-          <div className="w-full">
-            <div className="mb-8 text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-                Start a Campaign
-              </h2>
-              <p className="text-slate-400 text-lg">Describe what you're looking for in plain English</p>
-            </div>
+      {/* ============ CAMPAIGN SECTION ============ */}
+      <section id="search-section" className="relative py-20 px-4">
+        <div className="max-w-4xl mx-auto">
 
-            {/* Main search card */}
-            <div className="glass-card rounded-3xl p-6 sm:p-8 mb-8 glow-brand max-w-3xl mx-auto">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-4">
+          {/* Section header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-5">
+              <Zap className="w-3.5 h-3.5" />
+              AI-Powered Discovery
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight"
+              style={{ fontFamily: "var(--font-sora, inherit)" }}>
+              Start a Campaign
+            </h2>
+            <p className="text-slate-400 text-lg max-w-xl mx-auto">
+              Describe what you&apos;re looking for in plain English. Our AI handles the rest.
+            </p>
+          </div>
+
+          {/* Search card — premium AI prompt bar */}
+          <div className="relative">
+            {/* Glow ring */}
+            <div className="absolute -inset-px rounded-3xl bg-gradient-to-r from-indigo-500/40 via-violet-500/40 to-cyan-500/40 blur-sm" />
+            <div className="relative glass-card rounded-3xl p-6 sm:p-10 border border-white/10">
+              <form onSubmit={handleSubmit}>
+                <div className="flex flex-col sm:flex-row gap-3">
                   <div className="flex-1 relative">
                     <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                     <input
@@ -471,42 +480,41 @@ export default function HomePage() {
                       onChange={e => setInstruction(e.target.value)}
                       placeholder={EXAMPLE_PROMPTS[placeholderIdx]}
                       disabled={loading}
-                      className="input-field pl-14 text-lg w-full"
-                      style={{ height: "60px", borderRadius: "1rem" }}
+                      className="input-field pl-14 w-full text-base sm:text-lg"
+                      style={{ height: "58px", borderRadius: "0.875rem" }}
                     />
                   </div>
                   <button
                     id="start-campaign"
                     type="submit"
                     disabled={loading || !instruction.trim()}
-                    className="btn-primary flex items-center justify-center gap-3 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed text-lg font-semibold px-8"
-                    style={{ height: "60px", borderRadius: "1rem" }}
+                    className="btn-primary flex items-center justify-center gap-2.5 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed font-semibold px-7 text-base shrink-0"
+                    style={{ height: "58px", borderRadius: "0.875rem" }}
                   >
                     {loading ? (
-                      <><Loader2 className="w-5 h-5 animate-spin" /> Parsing…</>
+                      <><Loader2 className="w-4 h-4 animate-spin" /> Parsing…</>
                     ) : (
-                      <>Start Campaign <ArrowRight className="w-5 h-5" /></>
+                      <><Zap className="w-4 h-4" /> Launch Campaign</>
                     )}
                   </button>
                 </div>
 
                 {error && (
                   <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 flex items-center gap-2 mt-4">
-                    <X className="w-4 h-4 shrink-0" />
-                    {error}
+                    <X className="w-4 h-4 shrink-0" />{error}
                   </p>
                 )}
               </form>
 
-              {/* Example chips */}
-              <div className="mt-8 text-center">
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Try asking for:</p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {EXAMPLE_PROMPTS.slice(0, 3).map(p => (
+              {/* Suggestion chips */}
+              <div className="mt-7 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-widest whitespace-nowrap shrink-0">Try:</span>
+                <div className="flex flex-wrap gap-2">
+                  {EXAMPLE_PROMPTS.slice(0, 4).map(p => (
                     <button
                       key={p}
                       onClick={() => setInstruction(p)}
-                      className="text-xs text-slate-300 hover:text-white bg-surface-800/80 hover:bg-surface-700 border border-white/10 hover:border-indigo-500/50 rounded-lg px-3 py-2 transition-all leading-snug shadow-sm text-left"
+                      className="group text-xs text-slate-400 hover:text-white bg-white/5 hover:bg-indigo-500/15 border border-white/8 hover:border-indigo-500/40 rounded-full px-3.5 py-1.5 transition-all duration-200"
                     >
                       {p}
                     </button>
@@ -514,50 +522,59 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* How it works mini */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-              {[
-                { n: "1", icon: "🧠", title: "AI Parsing", desc: "Extract intent" },
-                { n: "2", icon: "🗺️", title: "Discovery", desc: "Find on Maps" },
-                { n: "3", icon: "📧", title: "Outreach", desc: "Send emails" },
-              ].map(step => (
-                <div key={step.n} className="glass-card rounded-xl p-4 text-center card-hover border border-white/5 bg-surface-900/40">
-                  <div className="text-2xl mb-2">{step.icon}</div>
-                  <div className="text-sm font-bold text-white mb-1 tracking-wide">{step.title}</div>
-                  <div className="text-xs text-slate-400 leading-relaxed">{step.desc}</div>
-                </div>
-              ))}
-            </div>
+          {/* How it works — 3 steps */}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              { num: "01", icon: "🧠", title: "AI Parsing", desc: "Claude AI understands natural language and extracts precise search parameters instantly." },
+              { num: "02", icon: "🗺️", title: "Maps Discovery", desc: "Searches 200M+ businesses on Google Maps to find exactly what you need in seconds." },
+              { num: "03", icon: "📧", title: "Smart Outreach", desc: "Personalized emails sent automatically with full tracking, analytics, and deliverability." },
+            ].map(step => (
+              <div key={step.num} className="group relative glass-card rounded-2xl p-6 border border-white/5 hover:border-indigo-500/30 transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute top-4 right-4 text-[11px] font-black text-slate-700 tracking-widest">{step.num}</div>
+                <div className="text-3xl mb-4">{step.icon}</div>
+                <div className="font-bold text-white text-sm mb-2 tracking-wide">{step.title}</div>
+                <div className="text-xs text-slate-500 leading-relaxed">{step.desc}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ============ FEATURES SECTION ============ */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-5">
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-violet-400 mb-5">
               <Sparkles className="w-3.5 h-3.5" />
-              Everything You Need
+              Enterprise Features
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Built for Global Lead Generation
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-5 tracking-tight"
+              style={{ fontFamily: "var(--font-sora, inherit)" }}>
+              Everything You Need to
+              <span className="block gradient-text">Win More Clients</span>
             </h2>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              Enterprise-grade features to find, reach, and convert businesses anywhere in the world.
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Enterprise-grade infrastructure built for scale. From AI discovery to automated outreach — all in one platform.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {FEATURES.map(f => (
               <div key={f.title}
-                className="glass-card rounded-2xl p-6 card-hover group"
+                className="group relative glass-card rounded-2xl p-7 overflow-hidden border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1.5"
+                style={{ boxShadow: "0 0 0 0 transparent", transition: "box-shadow 0.3s, transform 0.3s, border-color 0.3s" }}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(99,102,241,0.08)")}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 0 0 0 transparent")}
               >
-                <div className={`feature-icon bg-gradient-to-br ${f.color} border ${f.border} mb-4 group-hover:scale-110 transition-transform`}>
+                {/* Gradient corner highlight */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/[0.03] to-transparent rounded-bl-full" />
+                <div className={`feature-icon bg-gradient-to-br ${f.color} border ${f.border} mb-5 group-hover:scale-105 transition-transform duration-300`}>
                   <f.icon className={`w-6 h-6 ${f.iconColor}`} />
                 </div>
-                <h3 className="text-white font-semibold text-base mb-2">{f.title}</h3>
+                <h3 className="text-white font-bold text-base mb-2.5 tracking-wide">{f.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
@@ -566,39 +583,52 @@ export default function HomePage() {
       </section>
 
       {/* ============ CTA SECTION ============ */}
-      <section className="py-20 px-4">
+      <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="glass-card rounded-3xl p-10 sm:p-16 text-center relative overflow-hidden"
-            style={{ boxShadow: "0 0 80px rgba(99,102,241,0.1)" }}>
-            {/* Decorative orbs */}
-            <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+          <div className="relative overflow-hidden rounded-3xl p-12 sm:p-20 text-center"
+            style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.1) 50%, rgba(34,211,238,0.08) 100%)", border: "1px solid rgba(99,102,241,0.2)", boxShadow: "0 0 100px rgba(99,102,241,0.15), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+            {/* Glow orbs */}
+            <div className="absolute -top-24 -left-24 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl" />
+            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-violet-500/20 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-indigo-500/10 rounded-full blur-3xl" />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-6">
-                <Zap className="w-3.5 h-3.5" />
-                Get Started Free
+              <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs font-semibold text-slate-300 mb-7">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 pulse-dot" />
+                No credit card required
               </div>
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-5 leading-tight"
+              <h2 className="text-4xl sm:text-6xl font-extrabold text-white mb-6 leading-[1.05] tracking-tight"
                 style={{ fontFamily: "var(--font-sora, inherit)" }}>
-                Ready to find your next<br />
-                <span className="gradient-text">10,000 customers?</span>
+                Ready to find your
+                <span className="block gradient-text">10,000 customers?</span>
               </h2>
-              <p className="text-slate-400 text-lg mb-8 max-w-lg mx-auto">
-                Join thousands of businesses using LeadFlow to discover and connect with potential customers worldwide.
+              <p className="text-slate-400 text-lg mb-10 max-w-lg mx-auto leading-relaxed">
+                Join thousands of businesses using LeadFlow to discover and connect with potential customers worldwide — in seconds.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   id="cta-start-campaign"
                   onClick={() => document.getElementById("search-section")?.scrollIntoView({ behavior: "smooth" })}
-                  className="btn-primary flex items-center justify-center gap-2 text-base px-8 py-4"
+                  className="btn-primary flex items-center justify-center gap-2.5 text-base font-semibold px-10 py-4 hover:scale-105 transition-transform"
+                  style={{ borderRadius: "0.875rem" }}
                 >
                   <Zap className="w-5 h-5" />
                   Start for Free
                 </button>
-                <Link href="/about" className="btn-secondary flex items-center justify-center gap-2 text-sm py-4 px-8">
-                  Learn More <ArrowRight className="w-4 h-4" />
+                <Link href="/about"
+                  className="flex items-center justify-center gap-2 text-slate-300 hover:text-white font-medium text-base px-8 py-4 border border-white/10 hover:border-white/25 rounded-[0.875rem] bg-white/5 hover:bg-white/10 transition-all">
+                  Watch Demo <Play className="w-4 h-4" />
                 </Link>
+              </div>
+
+              {/* Trust badges */}
+              <div className="mt-10 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-600">
+                {["SOC 2 Compliant", "GDPR Ready", "99.9% Uptime", "150+ Countries"].map(b => (
+                  <span key={b} className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
+                    {b}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -606,51 +636,61 @@ export default function HomePage() {
       </section>
 
       {/* ============ FOOTER ============ */}
-      <footer className="border-t border-white/5 py-10 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                  <Zap className="w-4 h-4 text-emerald-400" />
+      <footer className="mt-8 border-t border-white/5 py-14 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+
+            {/* Brand col — wider */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center gap-2.5 mb-5">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/20 border border-indigo-500/30 flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-indigo-400" />
                 </div>
-                <span className="font-bold text-white">LeadFlow</span>
+                <span className="font-bold text-white text-lg tracking-tight">LeadFlow</span>
+                <span className="text-[10px] font-semibold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full">AI</span>
               </div>
-              <p className="text-slate-500 text-sm leading-relaxed">
-                AI-powered lead generation platform for global businesses.
+              <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
+                The most powerful AI-driven lead generation platform. Find, enrich, and reach any business — anywhere in the world.
               </p>
+              <div className="mt-5 flex items-center gap-2 text-xs text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-3 py-1.5 w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 pulse-dot" />
+                System operational
+              </div>
             </div>
+
             <div>
-              <h4 className="font-semibold text-white text-sm mb-4">Product</h4>
-              <div className="space-y-2">
+              <h4 className="font-semibold text-white text-sm mb-5 tracking-wide">Product</h4>
+              <div className="space-y-3">
                 {["Features", "Pricing", "Changelog", "Roadmap"].map(l => (
-                  <Link key={l} href={`/${l.toLowerCase()}`} className="block text-slate-500 hover:text-white text-sm transition-colors">{l}</Link>
+                  <Link key={l} href={`/${l.toLowerCase()}`} className="block text-slate-500 hover:text-slate-200 text-sm transition-colors duration-200">{l}</Link>
                 ))}
               </div>
             </div>
             <div>
-              <h4 className="font-semibold text-white text-sm mb-4">Company</h4>
-              <div className="space-y-2">
+              <h4 className="font-semibold text-white text-sm mb-5 tracking-wide">Company</h4>
+              <div className="space-y-3">
                 {["About", "Blog", "Careers", "Contact"].map(l => (
-                  <Link key={l} href={`/${l.toLowerCase()}`} className="block text-slate-500 hover:text-white text-sm transition-colors">{l}</Link>
+                  <Link key={l} href={`/${l.toLowerCase()}`} className="block text-slate-500 hover:text-slate-200 text-sm transition-colors duration-200">{l}</Link>
                 ))}
               </div>
             </div>
             <div>
-              <h4 className="font-semibold text-white text-sm mb-4">Legal</h4>
-              <div className="space-y-2">
+              <h4 className="font-semibold text-white text-sm mb-5 tracking-wide">Legal</h4>
+              <div className="space-y-3">
                 {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(l => (
-                  <Link key={l} href="#" className="block text-slate-500 hover:text-white text-sm transition-colors">{l}</Link>
+                  <Link key={l} href="#" className="block text-slate-500 hover:text-slate-200 text-sm transition-colors duration-200">{l}</Link>
                 ))}
               </div>
             </div>
           </div>
-          <div className="section-divider mb-6" />
+
+          <div className="section-divider mb-8" />
+
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-slate-600 text-xs">© 2026 LeadFlow AI. All rights reserved.</p>
-            <div className="flex items-center gap-2 text-xs text-slate-600">
+            <div className="flex items-center gap-1.5 text-xs text-slate-600">
               <Globe className="w-3.5 h-3.5" />
-              Available worldwide in 150+ countries
+              Available in 150+ countries
             </div>
           </div>
         </div>
