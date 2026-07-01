@@ -37,24 +37,24 @@ export default function LoginPage() {
       {/* Left panel: Hero */}
       <div className="hidden lg:flex flex-col justify-between w-1/2 relative p-12 overflow-hidden">
         {/* Background effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-indigo-500/10" />
-        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-indigo-500/10" />
+        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl" />
 
         {/* Logo */}
         <div className="relative z-10">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Zap className="w-5 h-5 text-emerald-400" />
+            <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Zap className="w-5 h-5 text-indigo-400" />
             </div>
             <span className="font-bold text-white text-xl">LeadFlow</span>
-            <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">AI</span>
+            <span className="text-[10px] font-bold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full">AI</span>
           </Link>
         </div>
 
         {/* Center content */}
         <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-6">
+          <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-6">
             <Sparkles className="w-3.5 h-3.5" />
             Trusted by 50,000+ businesses
           </div>
@@ -70,8 +70,8 @@ export default function LoginPage() {
           <div className="space-y-3">
             {FEATURES.map(f => (
               <div key={f} className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0">
-                  <ChevronRight className="w-3 h-3 text-emerald-400" />
+                <div className="w-5 h-5 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center shrink-0">
+                  <ChevronRight className="w-3 h-3 text-indigo-400" />
                 </div>
                 <span className="text-slate-300 text-sm">{f}</span>
               </div>
@@ -82,7 +82,7 @@ export default function LoginPage() {
         {/* Bottom trust signals */}
         <div className="relative z-10 flex items-center gap-6">
           <div className="flex items-center gap-2 text-slate-500 text-xs">
-            <Shield className="w-4 h-4 text-emerald-500" />
+            <Shield className="w-4 h-4 text-indigo-500" />
             SOC 2 Certified
           </div>
           <div className="flex items-center gap-2 text-slate-500 text-xs">
@@ -97,8 +97,8 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           {/* Mobile logo */}
           <Link href="/" className="flex items-center gap-2 mb-8 lg:hidden">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-              <Zap className="w-4.5 h-4.5 text-emerald-400" />
+            <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+              <Zap className="w-4.5 h-4.5 text-indigo-400" />
             </div>
             <span className="font-bold text-white text-lg">LeadFlow</span>
           </Link>
@@ -108,14 +108,14 @@ export default function LoginPage() {
             <button
               id="tab-login"
               onClick={() => setTab("login")}
-              className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${tab === "login" ? "bg-emerald-500 text-white shadow-lg" : "text-slate-400 hover:text-white"}`}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${tab === "login" ? "bg-indigo-500 text-white shadow-lg" : "text-slate-400 hover:text-white"}`}
             >
               Sign In
             </button>
             <button
               id="tab-signup"
               onClick={() => setTab("signup")}
-              className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${tab === "signup" ? "bg-emerald-500 text-white shadow-lg" : "text-slate-400 hover:text-white"}`}
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${tab === "signup" ? "bg-indigo-500 text-white shadow-lg" : "text-slate-400 hover:text-white"}`}
             >
               Create Account
             </button>
@@ -191,7 +191,7 @@ export default function LoginPage() {
                 <div className="flex items-center justify-between mb-1.5">
                   <label className="text-xs font-medium text-slate-400">Password</label>
                   {tab === "login" && (
-                    <Link href="#" className="text-xs text-emerald-400 hover:text-emerald-300 transition-colors">
+                    <Link href="#" className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
                       Forgot password?
                     </Link>
                   )}
@@ -219,12 +219,12 @@ export default function LoginPage() {
 
               {tab === "signup" && (
                 <label className="flex items-start gap-2 cursor-pointer">
-                  <input type="checkbox" required className="mt-0.5 accent-emerald-500" />
+                  <input type="checkbox" required className="mt-0.5 accent-indigo-500" />
                   <span className="text-xs text-slate-400">
                     I agree to the{" "}
-                    <Link href="#" className="text-emerald-400 hover:underline">Terms of Service</Link>
+                    <Link href="#" className="text-indigo-400 hover:underline">Terms of Service</Link>
                     {" "}and{" "}
-                    <Link href="#" className="text-emerald-400 hover:underline">Privacy Policy</Link>
+                    <Link href="#" className="text-indigo-400 hover:underline">Privacy Policy</Link>
                   </span>
                 </label>
               )}
@@ -247,7 +247,7 @@ export default function LoginPage() {
               {tab === "login" ? "Don't have an account? " : "Already have an account? "}
               <button
                 onClick={() => setTab(tab === "login" ? "signup" : "login")}
-                className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
+                className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
               >
                 {tab === "login" ? "Sign up free" : "Sign in"}
               </button>
