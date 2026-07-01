@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const TEAM = [
-  { name: "Alex Chen", role: "CEO & Co-Founder", avatar: "AC", color: "from-emerald-500 to-teal-600" },
+  { name: "Alex Chen", role: "CEO & Co-Founder", avatar: "AC", color: "from-indigo-500 to-violet-600" },
   { name: "Priya Patel", role: "CTO & Co-Founder", avatar: "PP", color: "from-blue-500 to-indigo-600" },
   { name: "Marcus Johnson", role: "Head of AI", avatar: "MJ", color: "from-purple-500 to-pink-600" },
   { name: "Sarah Kim", role: "Head of Growth", avatar: "SK", color: "from-orange-500 to-amber-600" },
@@ -24,7 +24,7 @@ const MILESTONES = [
 ];
 
 const VALUES = [
-  { icon: Target, color: "text-emerald-400", bg: "from-emerald-500/20 to-teal-500/20", border: "border-emerald-500/20", title: "Precision First", desc: "We believe in accurate data. Every lead we surface is verified and reliable." },
+  { icon: Target, color: "text-indigo-400", bg: "from-indigo-500/20 to-violet-500/20", border: "border-indigo-500/20", title: "Precision First", desc: "We believe in accurate data. Every lead we surface is verified and reliable." },
   { icon: Globe, color: "text-blue-400", bg: "from-blue-500/20 to-cyan-500/20", border: "border-blue-500/20", title: "Global by Design", desc: "Built from day one to work anywhere in the world, in any language." },
   { icon: Shield, color: "text-purple-400", bg: "from-purple-500/20 to-indigo-500/20", border: "border-purple-500/20", title: "Privacy Respect", desc: "We only surface publicly available data. No shady data brokers, ever." },
   { icon: Heart, color: "text-rose-400", bg: "from-rose-500/20 to-pink-500/20", border: "border-rose-500/20", title: "Customer Obsessed", desc: "Every feature we build starts with a real customer problem we're trying to solve." },
@@ -39,8 +39,8 @@ export default function AboutPage() {
       <nav className="fixed top-0 left-0 right-0 z-40 glass border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-              <Zap className="w-4.5 h-4.5 text-emerald-400" />
+            <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+              <Zap className="w-4.5 h-4.5 text-indigo-400" />
             </div>
             <span className="font-bold text-white text-lg">LeadFlow</span>
           </Link>
@@ -55,9 +55,9 @@ export default function AboutPage() {
 
       {/* Hero */}
       <section className="pt-32 pb-20 px-4 text-center relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl bg-emerald-500 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl bg-indigo-500 pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-emerald-400 mb-6">
+          <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-6">
             <Sparkles className="w-3.5 h-3.5" />
             Our Story
           </div>
@@ -84,7 +84,7 @@ export default function AboutPage() {
               { v: "99.9%", l: "Uptime", i: Shield },
             ].map(({ v, l, i: Icon }) => (
               <div key={l} className="stat-card text-center">
-                <Icon className="w-6 h-6 text-emerald-400 mx-auto mb-3" />
+                <Icon className="w-6 h-6 text-indigo-400 mx-auto mb-3" />
                 <div className="text-3xl font-extrabold gradient-text-green mb-1">{v}</div>
                 <div className="text-slate-500 text-sm">{l}</div>
               </div>
@@ -113,8 +113,8 @@ export default function AboutPage() {
             </div>
             <div className="glass-card rounded-3xl p-8 glow-brand">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-emerald-400" />
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-indigo-400" />
                 </div>
                 <div>
                   <div className="font-semibold text-white">How it works in 3 steps</div>
@@ -122,7 +122,7 @@ export default function AboutPage() {
                 </div>
               </div>
               {[
-                { n: "1", title: "Type your instruction", desc: "\"Find 50 hotels in Tokyo with high ratings\"", color: "text-emerald-400" },
+                { n: "1", title: "Type your instruction", desc: "\"Find 50 hotels in Tokyo with high ratings\"", color: "text-indigo-400" },
                 { n: "2", title: "AI discovers leads", desc: "Google Maps + Claude AI finds matching businesses", color: "text-blue-400" },
                 { n: "3", title: "Reach them instantly", desc: "Personalized outreach emails sent automatically", color: "text-purple-400" },
               ].map(step => (
@@ -170,7 +170,7 @@ export default function AboutPage() {
             <p className="text-slate-400">From a small idea to a global platform.</p>
           </div>
           <div className="relative">
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/50 via-blue-500/30 to-transparent" />
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-blue-500/30 to-transparent" />
             <div className="space-y-8 pl-16">
               {MILESTONES.map((m, i) => (
                 <div key={i} className="relative">
@@ -178,7 +178,7 @@ export default function AboutPage() {
                     {m.icon}
                   </div>
                   <div className="glass-card rounded-xl p-4 card-hover">
-                    <div className="text-xs font-bold text-emerald-400 mb-1">{m.year}</div>
+                    <div className="text-xs font-bold text-indigo-400 mb-1">{m.year}</div>
                     <div className="text-white text-sm leading-relaxed">{m.event}</div>
                   </div>
                 </div>
