@@ -21,6 +21,7 @@ const MILESTONES = [
   { year: "2024 Q3", event: "Reached 1M+ leads discovered milestone", icon: "🎯" },
   { year: "2024 Q4", event: "Expanded to 150+ countries with global infrastructure", icon: "🌍" },
   { year: "2025", event: "Launched enterprise plan serving Fortune 500 companies", icon: "🏆" },
+  { year: "2026", event: "Redesigned as an AI Agents discovery directory — Discover, Compare, Stay Ahead", icon: "⚡" },
 ];
 
 const VALUES = [
@@ -229,7 +230,7 @@ export default function AboutPage() {
 
       {/* Footer */}
       <footer className="border-t border-white/5 py-8 px-4 text-center">
-        <p className="text-slate-600 text-xs">© 2026 LeadFlow AI. All rights reserved.</p>
+        <p className="text-slate-600 text-xs">© 2026 LeadFlow AI. All rights reserved. · <Link href="/features" className="hover:text-slate-400 transition-colors">Features</Link> · <Link href="/pricing" className="hover:text-slate-400 transition-colors">Pricing</Link> · <Link href="/contact" className="hover:text-slate-400 transition-colors">Contact</Link></p>
       </footer>
     </div>
   );
