@@ -211,7 +211,7 @@ export default function ContactPage() {
       </section>
 
       <footer className="border-t border-white/5 py-8 px-4 text-center mt-10">
-        <p className="text-slate-600 text-xs">© 2026 LeadFlow AI. All rights reserved.</p>
+        <p className="text-slate-600 text-xs">&copy; 2026 LeadFlow AI. All rights reserved. &middot; <Link href="/about" className="hover:text-slate-400 transition-colors">About</Link> &middot; <Link href="/features" className="hover:text-slate-400 transition-colors">Features</Link> &middot; <Link href="/pricing" className="hover:text-slate-400 transition-colors">Pricing</Link></p>
       </footer>
     </div>
   );
