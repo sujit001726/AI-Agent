@@ -1,703 +1,191 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Zap, Search, ArrowRight, Clock, CheckCircle2, Loader2, LogOut,
-  BarChart3, Menu, X, Bot, Globe, Shield, Sparkles, TrendingUp,
-  Users, Mail, MapPin, Star, ChevronRight, Play, MessageSquare
+import { 
+  Search, Users, ShoppingBag, User, Building2
 } from "lucide-react";
 
-interface Campaign {
-  id: string;
-  instruction: string;
-  location: string;
-  category: string;
-  status: string;
-  leadsDiscoveredCount: number;
-  leadsEnrichedCount: number;
-  totalLeadsExpected: number;
-  reviewed: boolean;
-  createdAt: string;
-}
-
-const EXAMPLE_PROMPTS = [
-  "Find the top 50 hotels in Kathmandu, Nepal",
-  "Find 30 Italian restaurants in New York City",
-  "Find 20 dental clinics in Dubai with high ratings",
-  "Find 40 coffee shops in Melbourne, Australia",
-  "Find 25 boutique hotels in Paris, France",
-];
-
-const STATS = [
-  { value: "2.5M+", label: "Leads Discovered", icon: Users },
-  { value: "98%", label: "Accuracy Rate", icon: Star },
-  { value: "150+", label: "Countries Covered", icon: Globe },
-  { value: "10s", label: "Avg Discovery Time", icon: Zap },
-];
-
-const FEATURES = [
-  {
-    icon: Bot,
-    color: "from-indigo-500/20 to-orange-500/20",
-    border: "border-indigo-500/20",
-    iconColor: "text-indigo-400",
-    title: "AI-Powered Parsing",
-    desc: "Claude AI extracts precise location, category, and parameters from any natural language instruction you type."
-  },
-  {
-    icon: MapPin,
-    color: "from-blue-500/20 to-teal-500/20",
-    border: "border-blue-500/20",
-    iconColor: "text-blue-400",
-    title: "Google Maps Discovery",
-    desc: "Real-time search across 200M+ businesses globally with ratings, addresses, phones, and websites."
-  },
-  {
-    icon: Mail,
-    color: "from-indigo-500/20 to-indigo-500/20",
-    border: "border-indigo-500/20",
-    iconColor: "text-indigo-400",
-    title: "Smart Outreach",
-    desc: "Personalized email campaigns sent via Resend with full tracking, unsubscribe, and delivery analytics."
-  },
-  {
-    icon: Shield,
-    color: "from-orange-500/20 to-indigo-500/20",
-    border: "border-orange-500/20",
-    iconColor: "text-orange-400",
-    title: "Enterprise Security",
-    desc: "SOC 2 compliant with end-to-end encryption. Your data never leaves your control."
-  },
-  {
-    icon: TrendingUp,
-    color: "from-indigo-500/20 to-pink-500/20",
-    border: "border-indigo-500/20",
-    iconColor: "text-indigo-400",
-    title: "Real-time Analytics",
-    desc: "Live campaign dashboards with conversion rates, open rates, and ROI tracking."
-  },
-  {
-    icon: Globe,
-    color: "from-orange-500/20 to-teal-500/20",
-    border: "border-orange-500/20",
-    iconColor: "text-orange-400",
-    title: "Global Scale",
-    desc: "Operates in 150+ countries. Find any business anywhere on Google Maps in seconds."
-  },
-];
-
-function statusConfig(status: string) {
-  const configs: Record<string, { label: string; className: string }> = {
-    PENDING: { label: "Pending", className: "badge-pending" },
-    DISCOVERING: { label: "Discovering", className: "badge-running" },
-    ENRICHING: { label: "Enriching", className: "badge-running" },
-    COMPLETED: { label: "Completed", className: "badge-completed" },
-    FAILED: { label: "Failed", className: "badge-failed" },
-  };
-  return configs[status] || { label: status, className: "badge-pending" };
-}
-
-// ============================================================
-// CHATBOT COMPONENT
-// ============================================================
-interface ChatMsg { role: "user" | "bot"; text: string; }
-
-const BOT_RESPONSES: Record<string, string> = {
-  default: "I'm LeadFlow AI! I can help you find businesses worldwide using Google Maps. Try asking me 'Find hotels in Paris' or 'Find restaurants in Tokyo'!",
-  hotel: "🏨 I found 50 top-rated hotels in your area! Hotels include details like address, phone, website, and ratings. Want me to start a campaign to reach them?",
-  restaurant: "🍽️ Great choice! I can find restaurants with detailed information including cuisine type, rating, and contact info. Ready to discover them?",
-  find: "🔍 Searching Google Maps now... I'll discover businesses with ratings, contact details, and websites. This usually takes under 10 seconds!",
-  help: "I can help you:\n• Find any business type worldwide\n• Get contact info & ratings\n• Send personalized outreach emails\n• Track campaign performance\n\nJust type what you're looking for!",
-  price: "💰 LeadFlow offers flexible plans starting from free! Pro plan at $49/mo gives you unlimited campaigns. Enterprise plans available for large teams.",
-  email: "📧 Yes! LeadFlow automatically sends personalized outreach emails via Resend. Each email is customized with the business name and context.",
-};
-
-function getBotResponse(input: string): string {
-  const lower = input.toLowerCase();
-  if (lower.includes("hotel")) return BOT_RESPONSES.hotel;
-  if (lower.includes("restaurant") || lower.includes("food")) return BOT_RESPONSES.restaurant;
-  if (lower.includes("find") || lower.includes("search") || lower.includes("discover")) return BOT_RESPONSES.find;
-  if (lower.includes("help") || lower.includes("how") || lower.includes("what")) return BOT_RESPONSES.help;
-  if (lower.includes("price") || lower.includes("cost") || lower.includes("plan")) return BOT_RESPONSES.price;
-  if (lower.includes("email") || lower.includes("outreach") || lower.includes("contact")) return BOT_RESPONSES.email;
-  return BOT_RESPONSES.default;
-}
-
-function ChatBot() {
-  const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMsg[]>([
-    { role: "bot", text: "👋 Hi! I'm LeadFlow AI. Ask me anything about finding leads worldwide!" }
-  ]);
-  const [input, setInput] = useState("");
-  const [typing, setTyping] = useState(false);
-  const endRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, typing]);
-
-  function sendMessage(e: React.FormEvent) {
-    e.preventDefault();
-    if (!input.trim()) return;
-    const userMsg: ChatMsg = { role: "user", text: input };
-    setMessages(prev => [...prev, userMsg]);
-    setInput("");
-    setTyping(true);
-    setTimeout(() => {
-      setTyping(false);
-      setMessages(prev => [...prev, { role: "bot", text: getBotResponse(userMsg.text) }]);
-    }, 1200);
-  }
-
-  return (
-    <>
-      {/* Chatbot toggle */}
-      <button
-        id="chatbot-toggle"
-        onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-orange-600 flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300"
-        style={{ boxShadow: "0 0 30px rgba(225,29,72,0.5)" }}
-        aria-label="Open AI chatbot"
-      >
-        {open ? <X className="w-6 h-6 text-white" /> : <MessageSquare className="w-6 h-6 text-white" />}
-        {!open && (
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-surface-950 flex items-center justify-center text-[9px] font-bold text-white">1</span>
-        )}
-      </button>
-
-      {/* Chat window */}
-      {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 glass-card rounded-2xl shadow-2xl overflow-hidden border border-white/10"
-          style={{ boxShadow: "0 25px 80px rgba(0,0,0,0.5), 0 0 30px rgba(16,185,129,0.15)" }}>
-          {/* Header */}
-          <div className="flex items-center gap-3 p-4 border-b border-white/10 bg-gradient-to-r from-indigo-500/10 to-orange-500/10">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500/30 to-orange-500/30 border border-indigo-500/30 flex items-center justify-center">
-              <Bot className="w-5 h-5 text-indigo-400" />
-            </div>
-            <div>
-              <div className="font-semibold text-white text-sm">LeadFlow AI</div>
-              <div className="flex items-center gap-1.5 text-xs text-indigo-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 pulse-dot" />
-                Online & ready
-              </div>
-            </div>
-          </div>
-
-          {/* Messages */}
-          <div className="p-4 h-72 overflow-y-auto space-y-3 hide-scrollbar">
-            {messages.map((m, i) => (
-              <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
-                {m.role === "bot" && (
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500/30 to-orange-500/30 border border-indigo-500/30 flex items-center justify-center mr-2 mt-1 shrink-0">
-                    <Bot className="w-3 h-3 text-indigo-400" />
-                  </div>
-                )}
-                <div className={`max-w-[75%] px-3.5 py-2.5 text-sm whitespace-pre-wrap ${m.role === "user" ? "chat-bubble-user" : "chat-bubble-bot text-slate-200"}`}>
-                  {m.text}
-                </div>
-              </div>
-            ))}
-            {typing && (
-              <div className="flex justify-start">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500/30 to-orange-500/30 border border-indigo-500/30 flex items-center justify-center mr-2 mt-1 shrink-0">
-                  <Bot className="w-3 h-3 text-indigo-400" />
-                </div>
-                <div className="chat-bubble-bot px-4 py-3 flex gap-1.5 items-center">
-                  <div className="w-2 h-2 rounded-full bg-slate-400 typing-dot" />
-                  <div className="w-2 h-2 rounded-full bg-slate-400 typing-dot" />
-                  <div className="w-2 h-2 rounded-full bg-slate-400 typing-dot" />
-                </div>
-              </div>
-            )}
-            <div ref={endRef} />
-          </div>
-
-          {/* Input */}
-          <form onSubmit={sendMessage} className="p-3 border-t border-white/10">
-            <div className="flex gap-2">
-              <input
-                id="chatbot-input"
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                placeholder="Ask about finding leads..."
-                className="flex-1 bg-surface-800 border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 transition-all"
-              />
-              <button
-                id="chatbot-send"
-                type="submit"
-                className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-orange-600 flex items-center justify-center hover:opacity-90 transition-opacity shrink-0"
-              >
-                <ArrowRight className="w-4 h-4 text-white" />
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
-    </>
-  );
-}
-
-// ============================================================
-// NAVBAR COMPONENT
-// ============================================================
-function Navbar({ onSignOut }: { onSignOut: () => void }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
+export default function HomePage() {
+  const [activeTab, setActiveTab] = useState("AI Agents");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const tabs = [
+    { 
+      name: "AI Agents", 
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+          <path d="M17.523 15.3414C17.523 15.3414 17.523 15.3414 17.523 15.3414C17.523 15.3414 17.523 15.3414 17.523 15.3414ZM17.6009 15.2017C17.6009 15.2017 17.6009 15.2017 17.6009 15.2017C17.6009 15.2017 17.6009 15.2017 17.6009 15.2017ZM17.4725 10.9634C17.4725 10.9634 17.4725 10.9634 17.4725 10.9634C17.4725 10.9634 17.4725 10.9634 17.4725 10.9634ZM17.6416 10.9634C17.6416 10.9634 17.6416 10.9634 17.6416 10.9634C17.6416 10.9634 17.6416 10.9634 17.6416 10.9634ZM6.3578 10.9634C6.3578 10.9634 6.3578 10.9634 6.3578 10.9634C6.3578 10.9634 6.3578 10.9634 6.3578 10.9634ZM6.52688 10.9634C6.52688 10.9634 6.52688 10.9634 6.52688 10.9634C6.52688 10.9634 6.52688 10.9634 6.52688 10.9634ZM6.39853 15.2017C6.39853 15.2017 6.39853 15.2017 6.39853 15.2017C6.39853 15.2017 6.39853 15.2017 6.39853 15.2017ZM6.4764 15.3414C6.4764 15.3414 6.4764 15.3414 6.4764 15.3414C6.4764 15.3414 6.4764 15.3414 6.4764 15.3414ZM14.4984 8.78854L15.9388 6.29221C16.0371 6.12188 15.9789 5.89738 15.8087 5.79904C15.6384 5.70071 15.4139 5.75888 15.3156 5.92921L13.8441 8.47771C12.7231 7.96254 11.4116 7.64938 10 7.64938C8.58842 7.64938 7.27688 7.96254 6.15588 8.47771L4.68442 5.92921C4.58608 5.75888 4.36158 5.70071 4.19125 5.79904C4.02092 5.89738 3.96275 6.12188 4.06108 6.29221L5.50158 8.78854C3.04875 10.1332 1.34142 12.6395 1.05058 15.6322H18.9494C18.6586 12.6395 16.9513 10.1332 14.4984 8.78854ZM5.41525 13.5634C4.81075 13.5634 4.32108 13.0737 4.32108 12.4692C4.32108 11.8647 4.81075 11.375 5.41525 11.375C6.01975 11.375 6.50942 11.8647 6.50942 12.4692C6.50942 13.0737 6.01975 13.5634 5.41525 13.5634ZM14.5848 13.5634C13.9803 13.5634 13.4906 13.0737 13.4906 12.4692C13.4906 11.8647 13.9803 11.375 14.5848 11.375C15.1893 11.375 15.679 11.8647 15.679 12.4692C15.679 13.0737 15.1893 13.5634 14.5848 13.5634Z" />
+        </svg>
+      )
+    },
+    { 
+      name: "AI Tools", 
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+           {/* Alternative robot/tool icon matching reference roughly */}
+           <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a3 3 0 013 3v2h2v4h-2v1a3 3 0 01-3 3h-6a3 3 0 01-3-3v-1H5v-4h2v-2a3 3 0 013-3h1V5.73A2 2 0 0110 4a2 2 0 012-2zm0 6H9a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V9a1 1 0 00-1-1h-3zm-2 3a1 1 0 110 2 1 1 0 010-2zm4 0a1 1 0 110 2 1 1 0 010-2z" />
+        </svg>
+      )
+    },
+    { 
+      name: "Events", 
+      icon: <Building2 className="w-5 h-5 fill-transparent" />
+    },
+    { 
+      name: "Jobs", 
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="m11 8v6"/><path d="M8 11h6"/>
+        </svg>
+      )
+    },
+    { 
+      name: "AI Agencies", 
+      icon: <Users className="w-5 h-5 fill-transparent" /> 
+    },
+  ];
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "glass border-b border-white/10 shadow-2xl" : "bg-transparent"}`}>
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500/30 to-orange-500/20 border border-indigo-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <Zap className="w-4.5 h-4.5 text-indigo-400" />
-          </div>
-          <span className="font-bold text-white text-lg tracking-tight">LeadFlow</span>
-          <span className="hidden sm:block text-[10px] font-semibold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full">AI</span>
-        </Link>
-
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
-          <Link href="/about" className="nav-link">About</Link>
-          <Link href="/pricing" className="nav-link">Pricing</Link>
-          <Link href="/features" className="nav-link">Features</Link>
-          <Link href="/contact" className="nav-link">Contact</Link>
-        </div>
-
-        {/* Right actions */}
-        <div className="hidden md:flex items-center gap-3">
-          <button
-            id="nav-signout"
-            onClick={onSignOut}
-            className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors"
-          >
-            <LogOut className="w-4 h-4" />
-            Sign out
-          </button>
-        </div>
-
-        {/* Mobile menu btn */}
-        <button
-          id="mobile-menu-toggle"
-          className="md:hidden btn-ghost p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle mobile menu"
-        >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+    <div className="min-h-screen bg-[#000000] text-white font-sans relative overflow-x-hidden">
+      
+      {/* Background Image Overlay */}
+      <div className="absolute inset-0 z-0 h-[100vh] w-full pointer-events-none">
+        {/* Dark overlay for contrast */}
+        <div className="absolute inset-0 bg-black/60 z-10" />
+        <img 
+          src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2000&auto=format&fit=crop" 
+          alt="AI Background" 
+          className="w-full h-full object-cover object-center opacity-70 mix-blend-screen"
+        />
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="md:hidden glass border-t border-white/10 px-4 py-4 space-y-2">
-          <Link href="/about" className="block nav-link" onClick={() => setMobileOpen(false)}>About</Link>
-          <Link href="/pricing" className="block nav-link" onClick={() => setMobileOpen(false)}>Pricing</Link>
-          <Link href="/features" className="block nav-link" onClick={() => setMobileOpen(false)}>Features</Link>
-          <Link href="/contact" className="block nav-link" onClick={() => setMobileOpen(false)}>Contact</Link>
-          <div className="pt-2 border-t border-white/10">
-            <button onClick={onSignOut} className="flex items-center gap-1.5 text-sm text-slate-400">
-              <LogOut className="w-4 h-4" /> Sign out
-            </button>
-          </div>
-        </div>
-      )}
-    </nav>
-  );
-}
-
-// ============================================================
-// MAIN HOME PAGE
-// ============================================================
-export default function HomePage() {
-  const router = useRouter();
-  const [instruction, setInstruction] = useState("");
-  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [fetchingCampaigns, setFetchingCampaigns] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [placeholderIdx, setPlaceholderIdx] = useState(0);
-
-  useEffect(() => {
-    fetchCampaigns();
-    const interval = setInterval(fetchCampaigns, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const t = setInterval(() => setPlaceholderIdx(i => (i + 1) % EXAMPLE_PROMPTS.length), 3000);
-    return () => clearInterval(t);
-  }, []);
-
-  async function fetchCampaigns() {
-    try {
-      const res = await fetch("/api/campaigns");
-      if (res.status === 401) { router.push("/login"); return; }
-      const data = await res.json();
-      setCampaigns(data.campaigns || []);
-    } catch { /* silent */ }
-    finally { setFetchingCampaigns(false); }
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!instruction.trim()) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/campaigns", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ instruction }),
-      });
-      if (res.status === 401) { router.push("/login"); return; }
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to start campaign");
-      setInstruction("");
-      router.push(`/campaign/${data.campaign.id}`);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <div className="min-h-screen bg-mesh w-full overflow-x-hidden">
-      <div className="grid-pattern absolute inset-0 pointer-events-none opacity-40" />
-
-      <Navbar onSignOut={() => router.push("/api/auth/signout")} />
-
-      {/* ============ HERO SECTION ============ */}
-      <section className="relative min-h-[100vh] flex items-center pt-32 pb-20 px-4 overflow-hidden">
-        {/* Full Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/ai-agent-hero-refined.png"
-            alt="AI Background"
-            fill
-            className="object-cover object-center opacity-40 mix-blend-screen scale-105 animate-spin-slow"
-            style={{ animationDuration: "120s" }}
-            priority
-          />
-          {/* Gradients to blend image into the page */}
-          <div className="absolute inset-0 bg-gradient-to-b from-surface-950/40 via-surface-950/70 to-surface-950" />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface-950/90 via-transparent to-surface-950/90" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--color-surface-950)_100%)] opacity-80" />
-        </div>
-
-        {/* Glow orbs */}
-        <div className="absolute top-[20%] left-[20%] w-[600px] h-[600px] rounded-full opacity-[0.15] blur-[100px] pointer-events-none bg-indigo-500" style={{ animation: "glow-pulse 8s ease-in-out infinite" }} />
-        <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] rounded-full opacity-[0.1] blur-[100px] pointer-events-none bg-indigo-500" style={{ animation: "glow-pulse 10s ease-in-out infinite" }} />
-
-        <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Navbar */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-black/90 backdrop-blur-md py-4" : "bg-transparent py-5"}`}>
+        <div className="w-full max-w-[1500px] mx-auto px-6 flex items-center justify-between">
           
-          {/* Left Text Column */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 backdrop-blur-md rounded-full px-5 py-2 text-xs sm:text-sm font-semibold text-indigo-300 mb-8 shadow-[0_0_20px_rgba(225,29,72,0.2)]">
-              <Sparkles className="w-4 h-4" />
-              Next-Gen AI Lead Generation
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 pulse-dot ml-1" />
-            </div>
-
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight drop-shadow-2xl"
-              style={{ fontFamily: "var(--font-sora, inherit)" }}>
-              Find Any Business.<br />
-              <span className="gradient-text">Reach Them Instantly.</span>
-            </h1>
-
-            <p className="text-slate-300 text-lg sm:text-xl max-w-lg mb-10 leading-relaxed drop-shadow-lg font-medium">
-              Type a plain-English instruction. LeadFlow uses AI to discover businesses on Google Maps, enrich contact info, and send personalized outreach in seconds.
-            </p>
-
-            {/* Stats row */}
-            <div className="flex flex-wrap gap-8 pt-8 border-t border-white/10">
-              {STATS.slice(0, 3).map(({ value, label, icon: Icon }, idx) => (
-                <motion.div 
-                  key={label} 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 + (idx * 0.1) }}
-                  className="flex flex-col gap-1.5"
-                >
-                  <div className="flex items-center gap-2 text-indigo-400">
-                    <Icon className="w-5 h-5" />
-                    <span className="text-white font-extrabold text-2xl leading-none">{value}</span>
-                  </div>
-                  <div className="text-slate-400 text-xs font-semibold tracking-wide uppercase">{label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right Search/Interaction Column */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            id="search-section"
-            className="relative"
-          >
-            {/* Glow ring */}
-            <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-indigo-500/30 via-indigo-500/20 to-teal-500/30 blur-md" />
-            <div className="relative glass-card rounded-3xl p-8 sm:p-10 border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.4)]">
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2">Start a Campaign</h3>
-                <p className="text-slate-400 text-sm">Describe what you&apos;re looking for in plain English. Our AI handles the rest.</p>
+          {/* Left: Logo & Search */}
+          <div className="flex items-center gap-6">
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-9 h-9 overflow-hidden rounded-full">
+                {/* Robot Logo matching the screenshot approx */}
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=ai&backgroundColor=ffffff" alt="Logo" className="w-full h-full scale-125" />
               </div>
+            </Link>
+            <div className="relative hidden lg:flex items-center">
+              <Search className="absolute left-2 w-4 h-4 text-white font-bold" />
+              <input 
+                type="text" 
+                placeholder="What are you looking for?" 
+                className="bg-transparent border-none text-white text-[15px] font-medium focus:outline-none pl-8 w-[240px] placeholder-white/80"
+              />
+            </div>
+          </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="relative">
-                  <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-indigo-400/70" />
-                  <input
-                    id="instruction-input"
-                    value={instruction}
-                    onChange={e => setInstruction(e.target.value)}
-                    placeholder={EXAMPLE_PROMPTS[placeholderIdx]}
-                    disabled={loading}
-                    className="input-field pl-14 w-full text-base"
-                    style={{ height: "64px", borderRadius: "1rem", backgroundColor: "rgba(0,0,0,0.3)" }}
-                  />
-                </div>
+          {/* Middle: Links */}
+          <div className="hidden xl:flex items-center gap-7 text-[15px] font-medium tracking-wide">
+            <Link href="/" className="text-white hover:text-gray-300 transition">Home</Link>
+            <Link href="/agents" className="text-white hover:text-gray-300 transition">AI Agents</Link>
+            <Link href="/tools" className="text-white hover:text-gray-300 transition">AI Tools</Link>
+            <Link href="/events" className="text-white hover:text-gray-300 transition">AI Events</Link>
+            <Link href="/jobs" className="text-white hover:text-gray-300 transition">AI Jobs</Link>
+            <Link href="/agencies" className="text-white hover:text-gray-300 transition">AI Agencies</Link>
+            <Link href="/blog" className="text-white hover:text-gray-300 transition">Blog</Link>
+          </div>
+
+          {/* Right: Actions */}
+          <div className="flex items-center gap-6">
+            <Link href="/login" className="hidden sm:flex items-center gap-2 text-[14px] text-white hover:text-gray-300 transition">
+              <User className="w-5 h-5 fill-white" />
+              Sign in or Register
+            </Link>
+            <button className="text-white hover:text-gray-300 transition">
+              <ShoppingBag className="w-[22px] h-[22px]" />
+            </button>
+            <Link href="/add-listing" className="bg-white text-[#7C3AED] hover:bg-gray-100 transition px-5 py-2.5 rounded text-[14px] font-semibold flex items-center gap-2 shadow-sm">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+              </svg>
+              Add a listing
+            </Link>
+          </div>
+
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <main className="relative z-20 pt-52 pb-32 px-4 flex flex-col items-center justify-center min-h-[90vh]">
+        
+        <div className="text-center max-w-5xl mx-auto mb-16">
+          <h1 className="text-5xl md:text-[64px] font-bold text-white mb-3 tracking-tight leading-tight">
+            Discover. Compare. Stay Ahead.
+          </h1>
+          <p className="text-[20px] md:text-[22px] text-white font-medium drop-shadow-md">
+            Discover the Newest AI Agents Revolutionizing Everything
+          </p>
+        </div>
+
+        {/* Search Interface */}
+        <div className="w-full max-w-[1000px] mx-auto">
+          
+          {/* Tabs */}
+          <div className="flex flex-wrap items-center gap-8 mb-4 px-2">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.name;
+              return (
                 <button
-                  id="start-campaign"
-                  type="submit"
-                  disabled={loading || !instruction.trim()}
-                  className="btn-primary flex items-center justify-center gap-2.5 w-full font-semibold text-lg"
-                  style={{ height: "64px", borderRadius: "1rem" }}
+                  key={tab.name}
+                  onClick={() => setActiveTab(tab.name)}
+                  className={`flex items-center gap-2 text-[16px] font-bold pb-2 transition-all border-b-[3px] ${
+                    isActive ? "text-white border-white" : "text-gray-400 border-transparent hover:text-white"
+                  }`}
                 >
-                  {loading ? (
-                    <><Loader2 className="w-5 h-5 animate-spin" /> Analyzing Intent…</>
-                  ) : (
-                    <><Zap className="w-5 h-5" /> Launch Campaign</>
-                  )}
+                  {tab.icon}
+                  {tab.name}
                 </button>
+              );
+            })}
+          </div>
 
-                {error && (
-                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 flex items-center gap-2">
-                    <X className="w-4 h-4 shrink-0" />{error}
-                  </motion.p>
-                )}
-              </form>
-
-              {/* Suggestion chips */}
-              <div className="mt-8 space-y-3">
-                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-widest block">Trending Prompts:</span>
-                <div className="flex flex-wrap gap-2">
-                  {EXAMPLE_PROMPTS.slice(0, 3).map(p => (
-                    <button
-                      key={p}
-                      onClick={(e) => { e.preventDefault(); setInstruction(p); }}
-                      className="group text-xs text-slate-300 hover:text-white bg-white/5 hover:bg-indigo-500/20 border border-white/10 hover:border-indigo-500/40 rounded-full px-4 py-2 transition-all duration-300 text-left"
-                    >
-                      {p}
-                    </button>
-                  ))}
-                </div>
-              </div>
+          {/* Search Box */}
+          <div className="bg-white rounded p-[10px] flex flex-col md:flex-row items-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+            
+            <div className="flex-[1.5] w-full md:border-r border-gray-200 px-5 py-3">
+              <input 
+                type="text" 
+                placeholder="What are you looking for?" 
+                className="w-full text-gray-900 placeholder-gray-500 focus:outline-none text-[15px] bg-transparent"
+              />
             </div>
-          </motion.div>
+
+            <div className="flex-1 w-full md:border-r border-gray-200 px-5 py-3 flex items-center justify-between cursor-pointer group">
+              <span className="text-gray-600 text-[15px]">Select AI Agents</span>
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+
+            <div className="flex-1 w-full px-5 py-3 flex items-center justify-between cursor-pointer group">
+              <span className="text-gray-600 text-[15px]">Select Pricing</span>
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+
+            <button className="w-full md:w-auto bg-[#8B5CF6] hover:bg-[#7C3AED] text-white px-10 py-3.5 rounded font-semibold text-[15px] flex items-center justify-center gap-2 transition-colors ml-2">
+              <Search className="w-4 h-4" />
+              Search
+            </button>
+
+          </div>
 
         </div>
-      </section>
 
-      {/* ============ HOW IT WORKS SECTION ============ */}
-      <section className="py-12 px-4 relative z-20 -mt-10 mb-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              { num: "01", icon: <Bot className="w-8 h-8 text-indigo-400"/>, title: "AI Parsing", desc: "Claude AI extracts precise search parameters instantly." },
-              { num: "02", icon: <MapPin className="w-8 h-8 text-indigo-400"/>, title: "Maps Discovery", desc: "Searches 200M+ businesses globally in seconds." },
-              { num: "03", icon: <Mail className="w-8 h-8 text-teal-400"/>, title: "Smart Outreach", desc: "Personalized emails sent automatically with tracking." },
-            ].map((step, idx) => (
-              <motion.div 
-                key={step.num}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative glass-card rounded-2xl p-6 border border-white/5 hover:border-indigo-500/30 transition-all duration-300 hover:-translate-y-2 shadow-xl"
-              >
-                <div className="absolute top-6 right-6 text-4xl font-black text-white/5 tracking-widest">{step.num}</div>
-                <div className="mb-5 bg-white/5 w-14 h-14 rounded-xl flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform">
-                  {step.icon}
-                </div>
-                <div className="font-bold text-white text-lg mb-2">{step.title}</div>
-                <div className="text-sm text-slate-400 leading-relaxed">{step.desc}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </main>
 
-      {/* ============ FEATURES SECTION ============ */}
-      <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-orange-400 mb-5">
-              <Sparkles className="w-3.5 h-3.5" />
-              Enterprise Features
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-5 tracking-tight"
-              style={{ fontFamily: "var(--font-sora, inherit)" }}>
-              Everything You Need to
-              <span className="block gradient-text">Win More Clients</span>
-            </h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Enterprise-grade infrastructure built for scale. From AI discovery to automated outreach - all in one platform.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FEATURES.map(f => (
-              <div key={f.title}
-                className="group relative glass-card rounded-2xl p-7 overflow-hidden border border-white/5 hover:border-white/15 transition-all duration-300 hover:-translate-y-1.5"
-                style={{ boxShadow: "0 0 0 0 transparent", transition: "box-shadow 0.3s, transform 0.3s, border-color 0.3s" }}
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(225,29,72,0.08)")}
-                onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 0 0 0 transparent")}
-              >
-                {/* Gradient corner highlight */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/[0.03] to-transparent rounded-bl-full" />
-                <div className={`feature-icon bg-gradient-to-br ${f.color} border ${f.border} mb-5 group-hover:scale-105 transition-transform duration-300`}>
-                  <f.icon className={`w-6 h-6 ${f.iconColor}`} />
-                </div>
-                <h3 className="text-white font-bold text-base mb-2.5 tracking-wide">{f.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ CTA SECTION ============ */}
-      <section className="py-24 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="relative overflow-hidden rounded-3xl p-12 sm:p-20 text-center"
-            style={{ background: "linear-gradient(135deg, rgba(225,29,72,0.15) 0%, rgba(99,102,241,0.1) 50%, rgba(34,211,238,0.08) 100%)", border: "1px solid rgba(225,29,72,0.2)", boxShadow: "0 0 100px rgba(225,29,72,0.15), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-            {/* Glow orbs */}
-            <div className="absolute -top-24 -left-24 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl" />
-            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-orange-500/20 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-indigo-500/10 rounded-full blur-3xl" />
-
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs font-semibold text-slate-300 mb-7">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 pulse-dot" />
-                No credit card required
-              </div>
-              <h2 className="text-4xl sm:text-6xl font-extrabold text-white mb-6 leading-[1.05] tracking-tight"
-                style={{ fontFamily: "var(--font-sora, inherit)" }}>
-                Ready to find your
-                <span className="block gradient-text">10,000 customers?</span>
-              </h2>
-              <p className="text-slate-400 text-lg mb-10 max-w-lg mx-auto leading-relaxed">
-                Join thousands of businesses using LeadFlow to discover and connect with potential customers worldwide - in seconds.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  id="cta-start-campaign"
-                  onClick={() => document.getElementById("search-section")?.scrollIntoView({ behavior: "smooth" })}
-                  className="btn-primary flex items-center justify-center gap-2.5 text-base font-semibold px-10 py-4 hover:scale-105 transition-transform"
-                  style={{ borderRadius: "0.875rem" }}
-                >
-                  <Zap className="w-5 h-5" />
-                  Start for Free
-                </button>
-                <Link href="/about"
-                  className="flex items-center justify-center gap-2 text-slate-300 hover:text-white font-medium text-base px-8 py-4 border border-white/10 hover:border-white/25 rounded-[0.875rem] bg-white/5 hover:bg-white/10 transition-all">
-                  Watch Demo <Play className="w-4 h-4" />
-                </Link>
-              </div>
-
-              {/* Trust badges */}
-              <div className="mt-10 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-600">
-                {["SOC 2 Compliant", "GDPR Ready", "99.9% Uptime", "150+ Countries"].map(b => (
-                  <span key={b} className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
-                    {b}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ FOOTER ============ */}
-      <footer className="mt-8 border-t border-white/5 py-14 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-
-            {/* Brand col - wider */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-2.5 mb-5">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500/30 to-orange-500/20 border border-indigo-500/30 flex items-center justify-center">
-                  <Zap className="w-4 h-4 text-indigo-400" />
-                </div>
-                <span className="font-bold text-white text-lg tracking-tight">LeadFlow</span>
-                <span className="text-[10px] font-semibold bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 px-2 py-0.5 rounded-full">AI</span>
-              </div>
-              <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
-                The most powerful AI-driven lead generation platform. Find, enrich, and reach any business - anywhere in the world.
-              </p>
-              <div className="mt-5 flex items-center gap-2 text-xs text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-3 py-1.5 w-fit">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 pulse-dot" />
-                System operational
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white text-sm mb-5 tracking-wide">Product</h4>
-              <div className="space-y-3">
-                {["Features", "Pricing", "Changelog", "Roadmap"].map(l => (
-                  <Link key={l} href={`/${l.toLowerCase()}`} className="block text-slate-500 hover:text-slate-200 text-sm transition-colors duration-200">{l}</Link>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold text-white text-sm mb-5 tracking-wide">Company</h4>
-              <div className="space-y-3">
-                {["About", "Blog", "Careers", "Contact"].map(l => (
-                  <Link key={l} href={`/${l.toLowerCase()}`} className="block text-slate-500 hover:text-slate-200 text-sm transition-colors duration-200">{l}</Link>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold text-white text-sm mb-5 tracking-wide">Legal</h4>
-              <div className="space-y-3">
-                {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(l => (
-                  <Link key={l} href="#" className="block text-slate-500 hover:text-slate-200 text-sm transition-colors duration-200">{l}</Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="section-divider mb-8" />
-
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-slate-600 text-xs">© 2026 LeadFlow AI. All rights reserved.</p>
-            <div className="flex items-center gap-1.5 text-xs text-slate-600">
-              <Globe className="w-3.5 h-3.5" />
-              Available in 150+ countries
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      {/* AI Chatbot */}
-      <ChatBot />
     </div>
   );
 }
