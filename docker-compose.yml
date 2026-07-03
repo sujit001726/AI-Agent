@@ -6,7 +6,7 @@ services:
     container_name: leadflow-postgres
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_PASSWORD: 0306
       POSTGRES_DB: leadflow
     ports:
       - "5432:5432"
