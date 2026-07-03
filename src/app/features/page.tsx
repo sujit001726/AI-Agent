@@ -154,7 +154,7 @@ export default function FeaturesPage() {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-slate-500 text-sm mb-8">Powered by world-class technologies</p>
           <div className="flex flex-wrap justify-center gap-4">
-            {["Google Maps API", "Claude AI", "Resend", "PostgreSQL", "Redis", "NextAuth", "Prisma ORM", "BullMQ"].map(tech => (
+            {["Google Maps API", "Claude AI", "Resend", "PostgreSQL", "Redis", "NextAuth", "Prisma ORM", "BullMQ", "Tailwind CSS 4", "Framer Motion"].map(tech => (
               <div key={tech} className="glass px-4 py-2 rounded-xl text-slate-400 text-sm font-medium border border-white/5 hover:border-indigo-500/20 hover:text-white transition-all">
                 {tech}
               </div>
@@ -177,7 +177,7 @@ export default function FeaturesPage() {
       </section>
 
       <footer className="border-t border-white/5 py-8 px-4 text-center">
-        <p className="text-slate-600 text-xs">© 2026 LeadFlow AI. All rights reserved.</p>
+        <p className="text-slate-600 text-xs">&copy; 2026 LeadFlow AI. All rights reserved. &middot; <Link href="/about" className="hover:text-slate-400 transition-colors">About</Link> &middot; <Link href="/contact" className="hover:text-slate-400 transition-colors">Contact</Link></p>
       </footer>
     </div>
   );
