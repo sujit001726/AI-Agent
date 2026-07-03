@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LeadFlow AI 🚀
 
-## Getting Started
+> **AI-powered lead generation platform** — Find, enrich, and reach any business worldwide using Google Maps + Claude AI.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16.2.9-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.x-38bdf8?logo=tailwindcss)
+![Prisma](https://img.shields.io/badge/Prisma-7.x-2D3748?logo=prisma)
+
+---
+
+## ✨ Features
+
+- 🤖 **Claude AI Parsing** — Natural language intent extraction from plain English instructions
+- 🗺️ **Google Maps Discovery** — Real-time search across 200M+ businesses globally
+- 📧 **Personalized Outreach** — AI-crafted emails sent via Resend with full tracking
+- ⚡ **Background Workers** — Redis-powered BullMQ job queue for async campaign processing
+- 📊 **Campaign Analytics** — Live dashboards with discovery & enrichment metrics
+- 🔒 **Enterprise Security** — SOC 2 compliant, GDPR ready, end-to-end encryption
+
+---
+
+## 🧑‍💻 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 16, React 19, Tailwind CSS 4 |
+| AI | Claude AI (Anthropic SDK) |
+| Maps | Google Places API (New) |
+| Email | Resend |
+| Auth | NextAuth v5 + Google OAuth |
+| Database | PostgreSQL + Prisma ORM |
+| Queue | BullMQ + Redis |
+| Scraping | Cheerio |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 20+
+- PostgreSQL database
+- Redis (or use Docker Compose)
+- API keys: Google Maps, Anthropic (Claude), Resend, Google OAuth
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# 1. Clone the repository
+git clone https://github.com/sujit001726/AI-Agent.git
+cd AI-Agent
+
+# 2. Install dependencies
+npm install
+
+# 3. Copy environment variables
+cp .env.example .env
+
+# 4. Fill in your API keys in .env
+# 5. Start the database via Docker
+docker-compose up -d
+
+# 6. Run Prisma migrations
+npm run db:push
+
+# 7. Start development servers (Next.js + Worker)
+npm run dev:all
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Description |
+|---|---|
+| `npm run dev` | Start Next.js dev server |
+| `npm run dev:worker` | Start BullMQ worker |
+| `npm run dev:all` | Start both concurrently |
+| `npm run db:studio` | Open Prisma Studio |
+| `npm run db:push` | Push schema to database |
+| `npm run build` | Production build |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🗂️ Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                  # Next.js App Router pages
+│   ├── page.tsx          # Homepage (AI Agents Directory)
+│   ├── login/            # Auth pages
+│   ├── campaign/[id]/    # Campaign detail view
+│   ├── api/              # API routes (campaigns, leads, webhooks)
+│   ├── about/            # About page
+│   ├── features/         # Features page
+│   ├── pricing/          # Pricing page
+│   └── contact/          # Contact page
+├── lib/                  # Core utilities
+│   ├── auth.ts           # NextAuth config
+│   ├── claude.ts         # AI instruction parser
+│   ├── places.ts         # Google Maps integration
+│   ├── bullmq.ts         # Queue configuration
+│   └── email-template.ts # Email builder
+└── workers/
+    └── index.ts          # Background job processor
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔑 Environment Variables
 
-## Deploy on Vercel
+```env
+# Database
+DATABASE_URL=postgresql://...
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Authentication
+AUTH_SECRET=...
+GOOGLE_CLIENT_ID=...
+GOOGLE_CLIENT_SECRET=...
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# AI
+ANTHROPIC_API_KEY=...
+
+# Maps
+GOOGLE_MAPS_API_KEY=...
+
+# Email
+RESEND_API_KEY=...
+EMAIL_FROM=...
+
+# Redis
+REDIS_URL=redis://localhost:6379
+```
+
+---
+
+## 📄 License
+
+MIT © 2026 LeadFlow AI
