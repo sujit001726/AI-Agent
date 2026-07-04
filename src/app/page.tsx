@@ -212,6 +212,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Trusted By Section */}
+      <section className="relative z-20 py-16 px-6 border-t border-white/5 bg-black/40">
+        <div className="max-w-[1500px] mx-auto text-center">
+          <p className="text-gray-400 font-medium text-sm mb-8 uppercase tracking-widest">Trusted by innovative teams worldwide</p>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <svg key={i} className="h-8 text-white" viewBox="0 0 100 30" fill="currentColor">
+                <rect width="100" height="30" rx="4" fill="currentColor" fillOpacity="0.2"/>
+                <text x="50" y="20" fontSize="14" textAnchor="middle" fill="currentColor" fontWeight="bold">LOGO {i}</text>
+              </svg>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
