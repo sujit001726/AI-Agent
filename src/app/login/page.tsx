@@ -47,23 +47,6 @@ export default function LoginPage() {
               LeadFlow uses AI + Google Maps to discover any business worldwide and send personalized outreach in seconds.
             </p>
 
-            {/* Features List */}
-            <div className="space-y-4">
-              {[
-                "Find businesses anywhere on Google Maps",
-                "AI-powered natural language search",
-                "Automated personalized email outreach",
-                "Real-time campaign analytics",
-                "150+ countries supported"
-              ].map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#1C1C28] flex items-center justify-center border border-indigo-500/20 shrink-0">
-                    <ChevronRight className="w-3 h-3 text-indigo-400" />
-                  </div>
-                  <span className="text-[15px] text-gray-300">{feature}</span>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Footer Badges */}
