@@ -56,15 +56,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#000000] text-white font-sans relative overflow-x-hidden">
       
-      {/* Background Image Overlay */}
-      <div className="absolute inset-0 z-0 h-[100vh] w-full pointer-events-none">
-        {/* Dark overlay for contrast */}
-        <div className="absolute inset-0 bg-black/60 z-10" />
-        <img 
-          src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2000&auto=format&fit=crop" 
-          alt="AI Background" 
-          className="w-full h-full object-cover object-center opacity-70 mix-blend-screen"
-        />
+      {/* Background Gradient Mesh */}
+      <div className="absolute inset-0 z-0 h-[100vh] w-full pointer-events-none overflow-hidden">
+        {/* Glow Effects */}
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-rose-600/20 blur-[120px]" />
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)]" />
       </div>
 
       {/* Navbar */}
@@ -109,7 +107,7 @@ export default function HomePage() {
             <button className="text-white hover:text-gray-300 transition">
               <ShoppingBag className="w-[22px] h-[22px]" />
             </button>
-            <Link href="/add-listing" className="bg-white text-[#7C3AED] hover:bg-gray-100 transition px-5 py-2.5 rounded text-[14px] font-semibold flex items-center gap-2 shadow-sm">
+            <Link href="/add-listing" className="bg-white text-indigo-600 hover:bg-gray-100 transition px-5 py-2.5 rounded-full text-[14px] font-bold flex items-center gap-2 shadow-lg hover:scale-105 transform duration-200">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
               </svg>
@@ -123,11 +121,11 @@ export default function HomePage() {
       {/* Hero Section */}
       <main className="relative z-20 pt-52 pb-32 px-4 flex flex-col items-center justify-center min-h-[90vh]">
         
-        <div className="text-center max-w-5xl mx-auto mb-16">
-          <h1 className="text-5xl md:text-[64px] font-bold text-white mb-3 tracking-tight leading-tight">
-            Discover. Compare. Stay Ahead.
+        <div className="text-center max-w-5xl mx-auto mb-16 relative z-10 animate-fade-in-up">
+          <h1 className="text-5xl md:text-[72px] font-extrabold text-white mb-6 tracking-tight leading-[1.1]">
+            Discover. Compare. <span className="gradient-text">Stay Ahead.</span>
           </h1>
-          <p className="text-[20px] md:text-[22px] text-white font-medium drop-shadow-md">
+          <p className="text-[20px] md:text-[24px] text-gray-300 font-medium max-w-3xl mx-auto">
             Discover the Newest AI Agents Revolutionizing Everything
           </p>
         </div>
@@ -143,8 +141,8 @@ export default function HomePage() {
                 <button
                   key={tab.name}
                   onClick={() => setActiveTab(tab.name)}
-                  className={`flex items-center gap-2 text-[16px] font-bold pb-2 transition-all border-b-[3px] ${
-                    isActive ? "text-white border-white" : "text-gray-400 border-transparent hover:text-white"
+                  className={`flex items-center gap-2 text-[16px] font-bold pb-3 transition-all border-b-[3px] ${
+                    isActive ? "text-white border-indigo-500" : "text-gray-400 border-transparent hover:text-white"
                   }`}
                 >
                   {tab.icon}
@@ -155,28 +153,28 @@ export default function HomePage() {
           </div>
 
           {/* Search Box */}
-          <div className="bg-white rounded p-[10px] flex flex-col md:flex-row items-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+          <div className="glass-card rounded-2xl p-[10px] flex flex-col md:flex-row items-center shadow-[0_0_40px_rgba(99,102,241,0.15)] border border-white/10 relative z-10">
             
-            <div className="flex-[1.5] w-full md:border-r border-gray-200 px-5 py-3">
+            <div className="flex-[1.5] w-full md:border-r border-white/10 px-5 py-3">
               <input 
                 type="text" 
                 placeholder="What are you looking for?" 
-                className="w-full text-gray-900 placeholder-gray-500 focus:outline-none text-[15px] bg-transparent"
+                className="w-full text-white placeholder-gray-400 focus:outline-none text-[16px] bg-transparent"
               />
             </div>
 
-            <div className="flex-1 w-full md:border-r border-gray-200 px-5 py-3 flex items-center justify-between cursor-pointer group">
-              <span className="text-gray-600 text-[15px]">Select AI Agents</span>
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div className="flex-1 w-full md:border-r border-white/10 px-5 py-3 flex items-center justify-between cursor-pointer group">
+              <span className="text-gray-300 text-[15px] group-hover:text-white transition">Select AI Agents</span>
+              <svg className="w-4 h-4 text-gray-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
 
             <div className="flex-1 w-full px-5 py-3 flex items-center justify-between cursor-pointer group">
-              <span className="text-gray-600 text-[15px]">Select Pricing</span>
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+              <span className="text-gray-300 text-[15px] group-hover:text-white transition">Select Pricing</span>
+              <svg className="w-4 h-4 text-gray-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
 
-            <button className="w-full md:w-auto bg-[#8B5CF6] hover:bg-[#7C3AED] text-white px-10 py-3.5 rounded font-semibold text-[15px] flex items-center justify-center gap-2 transition-colors ml-2">
-              <Search className="w-4 h-4" />
+            <button className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-500 text-white px-10 py-4 rounded-xl font-bold text-[16px] flex items-center justify-center gap-2 transition-all ml-2 shadow-lg hover:shadow-indigo-500/25 hover:scale-105 duration-200">
+              <Search className="w-5 h-5" />
               Search
             </button>
 
@@ -185,6 +183,34 @@ export default function HomePage() {
         </div>
 
       </main>
+
+      {/* Featured Section */}
+      <section className="relative z-20 py-24 px-6 max-w-[1500px] mx-auto border-t border-white/5">
+        <div className="flex items-center justify-between mb-12">
+          <h2 className="text-3xl font-bold">Featured <span className="gradient-text-blue">AI Agents</span></h2>
+          <Link href="/agents" className="text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1 transition">
+            View all <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+          </Link>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="glass rounded-2xl p-6 hover:-translate-y-1 transition duration-300 group cursor-pointer border border-white/5 hover:border-indigo-500/30">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                <div className="w-8 h-8 rounded-lg overflow-hidden">
+                   <img src={`https://api.dicebear.com/7.x/bottts/svg?seed=agent${i}&backgroundColor=transparent`} alt="Agent" className="w-full h-full" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-white">Agent {i}</h3>
+              <p className="text-gray-400 text-sm mb-4 line-clamp-2">The most advanced AI agent for generating high quality leads automatically.</p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium px-2.5 py-1 bg-white/5 text-gray-300 rounded-full">Automation</span>
+                <span className="text-sm font-bold text-white">$29/mo</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
     </div>
   );
