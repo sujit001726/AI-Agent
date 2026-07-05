@@ -3,6 +3,7 @@ import { Inter, Sora } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,10 +37,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${sora.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${sora.variable} font-sans antialiased min-h-screen flex flex-col`}>
         <Providers>
           <Navbar />
-          {children}
+          <main className="flex-1 w-full flex flex-col">
+            {children}
+          </main>
+          <Footer />
         </Providers>
       </body>
     </html>

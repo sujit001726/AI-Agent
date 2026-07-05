@@ -13,16 +13,15 @@ export default function HomePage() {
       name: "AI Agents", 
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-          <path d="M17.523 15.3414C17.523 15.3414 17.523 15.3414 17.523 15.3414C17.523 15.3414 17.523 15.3414 17.523 15.3414ZM17.6009 15.2017C17.6009 15.2017 17.6009 15.2017 17.6009 15.2017C17.6009 15.2017 17.6009 15.2017 17.6009 15.2017ZM17.4725 10.9634C17.4725 10.9634 17.4725 10.9634 17.4725 10.9634C17.4725 10.9634 17.4725 10.9634 17.4725 10.9634ZM17.6416 10.9634C17.6416 10.9634 17.6416 10.9634 17.6416 10.9634C17.6416 10.9634 17.6416 10.9634 17.6416 10.9634ZM6.3578 10.9634C6.3578 10.9634 6.3578 10.9634 6.3578 10.9634C6.3578 10.9634 6.3578 10.9634 6.3578 10.9634ZM6.52688 10.9634C6.52688 10.9634 6.52688 10.9634 6.52688 10.9634C6.52688 10.9634 6.52688 10.9634 6.52688 10.9634ZM6.39853 15.2017C6.39853 15.2017 6.39853 15.2017 6.39853 15.2017C6.39853 15.2017 6.39853 15.2017 6.39853 15.2017ZM6.4764 15.3414C6.4764 15.3414 6.4764 15.3414 6.4764 15.3414C6.4764 15.3414 6.4764 15.3414 6.4764 15.3414ZM14.4984 8.78854L15.9388 6.29221C16.0371 6.12188 15.9789 5.89738 15.8087 5.79904C15.6384 5.70071 15.4139 5.75888 15.3156 5.92921L13.8441 8.47771C12.7231 7.96254 11.4116 7.64938 10 7.64938C8.58842 7.64938 7.27688 7.96254 6.15588 8.47771L4.68442 5.92921C4.58608 5.75888 4.36158 5.70071 4.19125 5.79904C4.02092 5.89738 3.96275 6.12188 4.06108 6.29221L5.50158 8.78854C3.04875 10.1332 1.34142 12.6395 1.05058 15.6322H18.9494C18.6586 12.6395 16.9513 10.1332 14.4984 8.78854ZM5.41525 13.5634C4.81075 13.5634 4.32108 13.0737 4.32108 12.4692C4.32108 11.8647 4.81075 11.375 5.41525 11.375C6.01975 11.375 6.50942 11.8647 6.50942 12.4692C6.50942 13.0737 6.01975 13.5634 5.41525 13.5634ZM14.5848 13.5634C13.9803 13.5634 13.4906 13.0737 13.4906 12.4692C13.4906 11.8647 13.9803 11.375 14.5848 11.375C15.1893 11.375 15.679 11.8647 15.679 12.4692C15.679 13.0737 15.1893 13.5634 14.5848 13.5634Z" />
+          <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a3 3 0 013 3v2h2v4h-2v1a3 3 0 01-3 3h-6a3 3 0 01-3-3v-1H5v-4h2v-2a3 3 0 013-3h1V5.73A2 2 0 0110 4a2 2 0 012-2zm0 6H9a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V9a1 1 0 00-1-1h-3zm-2 3a1 1 0 110 2 1 1 0 010-2zm4 0a1 1 0 110 2 1 1 0 010-2z" />
         </svg>
       )
     },
     { 
       name: "AI Tools", 
       icon: (
-        <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-           {/* Alternative robot/tool icon matching reference roughly */}
-           <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a3 3 0 013 3v2h2v4h-2v1a3 3 0 01-3 3h-6a3 3 0 01-3-3v-1H5v-4h2v-2a3 3 0 013-3h1V5.73A2 2 0 0110 4a2 2 0 012-2zm0 6H9a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V9a1 1 0 00-1-1h-3zm-2 3a1 1 0 110 2 1 1 0 010-2zm4 0a1 1 0 110 2 1 1 0 010-2z" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+           <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
         </svg>
       )
     },
@@ -34,7 +33,7 @@ export default function HomePage() {
       name: "Jobs", 
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="m11 8v6"/><path d="M8 11h6"/>
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
         </svg>
       )
     },
@@ -45,76 +44,82 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#000000] text-white font-sans relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans relative overflow-x-hidden">
       
-      {/* Background Gradient Mesh */}
-      <div className="absolute inset-0 z-0 h-[100vh] w-full pointer-events-none overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-rose-600/20 blur-[120px]" />
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)]" />
-      </div>
-
-
-
-      {/* Hero Section */}
-      <main className="relative z-20 pt-52 pb-32 px-4 flex flex-col items-center justify-center min-h-[90vh]">
+      {/* Hero Section with Background Image */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         
-        <div className="text-center max-w-5xl mx-auto mb-16 relative z-10 animate-fade-in-up">
-          <h1 className="text-5xl md:text-[72px] font-extrabold text-white mb-6 tracking-tight leading-[1.1]">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/hero-bg.jpg')",
+            }}
+          />
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80" />
+          {/* Additional gradient for depth */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+        </div>
+
+        {/* Hero Content */}
+        <main className="relative z-20 pt-32 pb-20 px-4 flex flex-col items-center justify-center w-full">
+        
+        <div className="text-center max-w-6xl mx-auto mb-12 relative z-10 animate-fade-in-up">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-5 tracking-tight leading-[1.15]">
             Discover. Compare. <span className="gradient-text">Stay Ahead.</span>
           </h1>
-          <p className="text-[20px] md:text-[24px] text-gray-300 font-medium max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-normal max-w-3xl mx-auto leading-relaxed">
             Discover the Newest AI Agents Revolutionizing Everything
           </p>
         </div>
 
         {/* Search Interface */}
-        <div className="w-full max-w-[1000px] mx-auto">
+        <div className="w-full max-w-[1100px] mx-auto px-4">
           
           {/* Tabs */}
-          <div className="flex flex-wrap items-center gap-8 mb-4 px-2">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-5 px-2">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.name;
               return (
                 <button
                   key={tab.name}
                   onClick={() => setActiveTab(tab.name)}
-                  className={`flex items-center gap-2 text-[16px] font-bold pb-3 transition-all border-b-[3px] ${
-                    isActive ? "text-white border-indigo-500" : "text-gray-400 border-transparent hover:text-white"
+                  className={`flex items-center gap-2.5 text-sm sm:text-base font-semibold pb-2.5 transition-all border-b-[3px] ${
+                    isActive ? "text-white border-indigo-500" : "text-gray-400 border-transparent hover:text-white hover:border-gray-600"
                   }`}
                 >
                   {tab.icon}
-                  {tab.name}
+                  <span className="hidden sm:inline">{tab.name}</span>
                 </button>
               );
             })}
           </div>
 
           {/* Search Box */}
-          <div className="glass-card rounded-2xl p-[10px] flex flex-col md:flex-row items-center shadow-[0_0_40px_rgba(99,102,241,0.15)] border border-white/10 relative z-10">
+          <div className="glass-card rounded-xl p-2 sm:p-2.5 flex flex-col sm:flex-row items-stretch gap-2 sm:gap-0 shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-white/10 backdrop-blur-xl">
             
-            <div className="flex-[1.5] w-full md:border-r border-white/10 px-5 py-3">
+            <div className="flex-[1.5] w-full sm:border-r border-white/10 px-4 sm:px-5 py-3 sm:py-3.5">
               <input 
                 type="text" 
                 placeholder="What are you looking for?" 
-                className="w-full text-white placeholder-gray-400 focus:outline-none text-[16px] bg-transparent"
+                className="w-full text-white placeholder-gray-400 focus:outline-none text-sm sm:text-base bg-transparent font-medium"
               />
             </div>
 
-            <div className="flex-1 w-full md:border-r border-white/10 px-5 py-3 flex items-center justify-between cursor-pointer group">
-              <span className="text-gray-300 text-[15px] group-hover:text-white transition">Select AI Agents</span>
-              <svg className="w-4 h-4 text-gray-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div className="flex-1 w-full sm:border-r border-white/10 px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between cursor-pointer group">
+              <span className="text-gray-300 text-sm sm:text-[15px] group-hover:text-white transition font-medium">Select AI Agents</span>
+              <svg className="w-4 h-4 text-gray-400 group-hover:text-white transition flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
 
-            <div className="flex-1 w-full px-5 py-3 flex items-center justify-between cursor-pointer group">
-              <span className="text-gray-300 text-[15px] group-hover:text-white transition">Select Pricing</span>
-              <svg className="w-4 h-4 text-gray-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div className="flex-1 w-full sm:border-r border-white/10 px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between cursor-pointer group">
+              <span className="text-gray-300 text-sm sm:text-[15px] group-hover:text-white transition font-medium">Select Pricing</span>
+              <svg className="w-4 h-4 text-gray-400 group-hover:text-white transition flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
 
-            <button className="w-full md:w-auto bg-indigo-600 hover:bg-indigo-500 text-white px-10 py-4 rounded-xl font-bold text-[16px] flex items-center justify-center gap-2 transition-all ml-2 shadow-lg hover:shadow-indigo-500/25 hover:scale-105 duration-200">
-              <Search className="w-5 h-5" />
+            <button className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-lg font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-all sm:ml-1.5 shadow-lg hover:shadow-indigo-500/30 hover:scale-[1.02] duration-200">
+              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
               Search
             </button>
 
@@ -124,28 +129,31 @@ export default function HomePage() {
 
       </main>
 
+      </section>
+
       {/* Featured Section */}
-      <section className="relative z-20 py-24 px-6 max-w-[1500px] mx-auto border-t border-white/5">
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="text-3xl font-bold">Featured <span className="gradient-text-blue">AI Agents</span></h2>
-          <Link href="/agents" className="text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1 transition">
-            View all <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+      <section className="relative z-20 py-16 sm:py-24 px-4 sm:px-6 max-w-[1400px] mx-auto">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Featured <span className="gradient-text-blue">AI Agents</span></h2>
+          <Link href="/agents" className="text-indigo-400 hover:text-indigo-300 font-semibold text-sm sm:text-base flex items-center gap-1.5 transition group">
+            View all 
+            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
           </Link>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="glass rounded-2xl p-6 hover:-translate-y-1 transition duration-300 group cursor-pointer border border-white/5 hover:border-indigo-500/30">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                <div className="w-8 h-8 rounded-lg overflow-hidden">
-                   <img src={`https://api.dicebear.com/7.x/bottts/svg?seed=agent${i}&backgroundColor=transparent`} alt="Agent" className="w-full h-full" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+            <div key={i} className="glass rounded-xl p-5 hover:-translate-y-1 transition-all duration-300 group cursor-pointer border border-white/10 hover:border-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/10">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-10 h-10 rounded-lg overflow-hidden">
+                   <img src={`https://api.dicebear.com/7.x/bottts/svg?seed=agent${i}&backgroundColor=6366f1`} alt="Agent" className="w-full h-full" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-white">Agent {i}</h3>
-              <p className="text-gray-400 text-sm mb-4 line-clamp-2">The most advanced AI agent for generating high quality leads automatically.</p>
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-medium px-2.5 py-1 bg-white/5 text-gray-300 rounded-full">Automation</span>
-                <span className="text-sm font-bold text-white">$29/mo</span>
+              <h3 className="text-lg font-bold mb-2 text-white group-hover:text-indigo-400 transition-colors">AI Agent {i}</h3>
+              <p className="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">Advanced AI agent revolutionizing automation and productivity workflows.</p>
+              <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                <span className="text-xs font-semibold px-3 py-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg border border-indigo-500/20">Automation</span>
+                <span className="text-sm font-bold text-white">$29<span className="text-gray-500 text-xs">/mo</span></span>
               </div>
             </div>
           ))}
@@ -153,14 +161,14 @@ export default function HomePage() {
       </section>
 
       {/* Trusted By Section */}
-      <section className="relative z-20 py-16 px-6 border-t border-white/5 bg-black/40">
-        <div className="max-w-[1500px] mx-auto text-center">
-          <p className="text-gray-400 font-medium text-sm mb-8 uppercase tracking-widest">Trusted by innovative teams worldwide</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+      <section className="relative z-20 py-12 sm:py-16 px-4 sm:px-6 border-t border-white/5 bg-gradient-to-b from-black/40 to-black/60">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <p className="text-gray-500 font-semibold text-xs sm:text-sm mb-6 sm:mb-8 uppercase tracking-wider">Trusted by innovative teams worldwide</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12 md:gap-16 lg:gap-20 opacity-50 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-500">
             {[1, 2, 3, 4, 5].map((i) => (
-              <svg key={i} className="h-8 text-white" viewBox="0 0 100 30" fill="currentColor">
-                <rect width="100" height="30" rx="4" fill="currentColor" fillOpacity="0.2"/>
-                <text x="50" y="20" fontSize="14" textAnchor="middle" fill="currentColor" fontWeight="bold">LOGO {i}</text>
+              <svg key={i} className="h-6 sm:h-7 md:h-8 text-white hover:scale-110 transition-transform" viewBox="0 0 100 30" fill="currentColor">
+                <rect width="100" height="30" rx="4" fill="currentColor" fillOpacity="0.15"/>
+                <text x="50" y="20" fontSize="13" textAnchor="middle" fill="currentColor" fontWeight="600">LOGO {i}</text>
               </svg>
             ))}
           </div>

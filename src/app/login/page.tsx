@@ -1,92 +1,141 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { Zap, ChevronRight, CheckCircle2, Lock, ArrowRight, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowRight, Sparkles, Shield, Zap, TrendingUp } from "lucide-react";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(true);
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row bg-[#0A0A0B] text-white font-sans overflow-hidden">
+    <div className="min-h-screen w-full flex bg-black text-white font-sans relative overflow-hidden">
       
-      {/* LEFT COLUMN: BRANDING & FEATURES */}
-      <div className="w-full md:w-[55%] relative flex flex-col px-8 py-10 md:px-16 lg:px-24 justify-center" 
-           style={{ background: "radial-gradient(circle at right center, rgba(30, 20, 60, 0.4) 0%, rgba(10, 10, 11, 1) 70%)" }}>
+      {/* Animated Background */}
+      <div className="absolute inset-0 z-0">
+        {/* Gradient mesh */}
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[150px] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-pink-600/15 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
+      {/* LEFT SIDE: Branding & Features */}
+      <div className="hidden lg:flex w-1/2 relative z-10 flex-col justify-between p-12 xl:p-16">
         
-        {/* Glow Effects */}
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Zap className="w-6 h-6 text-white" />
+          </div>
+          <span className="text-2xl font-bold">LeadFlow</span>
+          <span className="text-xs font-bold bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded-md border border-indigo-500/30">AI</span>
+        </Link>
 
-        <div className="relative z-10 h-full flex flex-col justify-between max-w-2xl">
-          
-          {/* Logo */}
-          <div className="flex items-center gap-3 mb-16 pt-4">
-            <div className="w-9 h-9 rounded-lg bg-[#2A2B3D] flex items-center justify-center">
-              <Zap className="w-5 h-5 text-indigo-400" />
-            </div>
-            <span className="font-bold text-xl tracking-tight text-white">LeadFlow</span>
-            <span className="text-[10px] font-semibold bg-indigo-900/50 text-indigo-300 px-2 py-0.5 rounded uppercase tracking-wider">AI</span>
+        {/* Main Content */}
+        <div className="max-w-xl">
+          <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 mb-8">
+            <Sparkles className="w-4 h-4 text-indigo-400" />
+            <span className="text-sm font-semibold text-gray-300">Trusted by 10,000+ businesses</span>
           </div>
 
-          <div className="flex-1 flex flex-col justify-center">
-            {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#1A1A24] border border-white/5 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-300 w-fit mb-8">
-              <Zap className="w-3.5 h-3.5" />
-              Trusted by 50,000+ businesses
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="text-4xl lg:text-[54px] font-bold text-white mb-6 leading-[1.1] tracking-tight">
-              The smartest way to<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-cyan-400">
-                find & reach leads
-              </span>
-            </h1>
-
-            <p className="text-gray-400 text-[17px] leading-relaxed mb-10 max-w-lg">
-              LeadFlow uses AI + Google Maps to discover any business worldwide and send personalized outreach in seconds.
-            </p>
-
-          </div>
-
-          {/* Footer Badges */}
-          <div className="mt-16 flex items-center gap-6 text-[13px] text-gray-500 font-medium">
-            <span className="flex items-center gap-2">
-              <Lock className="w-4 h-4 text-gray-600" />
-              SOC 2 Certified
+          <h1 className="text-5xl xl:text-6xl font-extrabold mb-6 leading-tight">
+            Discover leads.<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+              Close deals.
             </span>
-            <span className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-gray-600" />
-              GDPR Compliant
-            </span>
-          </div>
+          </h1>
 
+          <p className="text-xl text-gray-400 mb-12 leading-relaxed">
+            AI-powered lead generation that finds and connects you with your ideal customers automatically.
+          </p>
+
+          {/* Feature List */}
+          <div className="space-y-4">
+            {[
+              { icon: TrendingUp, text: "10x faster lead discovery with AI" },
+              { icon: Zap, text: "Automated personalized outreach" },
+              { icon: Shield, text: "Enterprise-grade security & privacy" }
+            ].map((feature, idx) => (
+              <div key={idx} className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-indigo-500/20 group-hover:border-indigo-500/30 transition-all">
+                  <feature.icon className="w-5 h-5 text-indigo-400" />
+                </div>
+                <span className="text-gray-300 font-medium">{feature.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Stats */}
+        <div className="flex items-center gap-8">
+          <div>
+            <div className="text-3xl font-bold text-white">50K+</div>
+            <div className="text-sm text-gray-500">Active Users</div>
+          </div>
+          <div className="w-px h-12 bg-white/10" />
+          <div>
+            <div className="text-3xl font-bold text-white">2M+</div>
+            <div className="text-sm text-gray-500">Leads Generated</div>
+          </div>
+          <div className="w-px h-12 bg-white/10" />
+          <div>
+            <div className="text-3xl font-bold text-white">98%</div>
+            <div className="text-sm text-gray-500">Success Rate</div>
+          </div>
         </div>
       </div>
 
-      {/* RIGHT COLUMN: LOGIN FORM */}
-      <div className="w-full md:w-[45%] flex flex-col items-center justify-center p-8 relative z-10">
-        
-        <div className="w-full max-w-[440px]">
+      {/* RIGHT SIDE: Login Form */}
+      <div className="w-full lg:w-1/2 relative z-10 flex items-center justify-center p-6 sm:p-12">
+        <div className="w-full max-w-md">
           
-          {/* Tabs: Sign In / Create Account */}
-          <div className="flex bg-[#121217] p-1 rounded-lg mb-8 border border-white/5">
-            <button className="flex-1 bg-[#6C5CE7] text-white text-sm font-semibold py-2.5 rounded-md shadow-lg transition-colors">
+          {/* Mobile Logo */}
+          <Link href="/" className="lg:hidden flex items-center gap-3 mb-8 group">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+              <Zap className="w-6 h-6 text-white" />
+            </div>
+            <span className="text-2xl font-bold">LeadFlow</span>
+          </Link>
+
+          {/* Tabs */}
+          <div className="flex bg-white/5 backdrop-blur-sm border border-white/10 p-1.5 rounded-xl mb-8">
+            <button
+              onClick={() => setIsSignIn(true)}
+              className={`flex-1 py-3 px-6 rounded-lg font-semibold text-sm transition-all ${
+                isSignIn
+                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
               Sign In
             </button>
-            <button className="flex-1 text-gray-400 hover:text-white text-sm font-semibold py-2.5 rounded-md transition-colors">
+            <button
+              onClick={() => setIsSignIn(false)}
+              className={`flex-1 py-3 px-6 rounded-lg font-semibold text-sm transition-all ${
+                !isSignIn
+                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
               Create Account
             </button>
           </div>
 
-          {/* Login Card */}
-          <div className="bg-[#121217]/80 backdrop-blur-xl border border-white/5 rounded-2xl p-8 lg:p-10 shadow-2xl relative">
+          {/* Form Card */}
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
             
-            <h2 className="text-[28px] font-bold text-white mb-2 tracking-tight">Welcome back</h2>
-            <p className="text-gray-400 text-[15px] mb-8">Sign in to your LeadFlow workspace</p>
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold mb-2">
+                {isSignIn ? "Welcome back" : "Get started"}
+              </h2>
+              <p className="text-gray-400">
+                {isSignIn 
+                  ? "Sign in to your LeadFlow workspace" 
+                  : "Create your account and start generating leads"}
+              </p>
+            </div>
 
             {/* Google Login */}
-            <button className="w-full flex items-center justify-center gap-3 bg-[#1A1A24] hover:bg-[#22222E] border border-white/5 text-white font-medium py-3 rounded-lg transition-all mb-6">
+            <button className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-900 font-semibold py-3.5 rounded-xl transition-all mb-6 shadow-lg">
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -97,73 +146,79 @@ export default function LoginPage() {
             </button>
 
             {/* Divider */}
-            <div className="flex items-center mb-6">
-              <div className="flex-1 border-t border-white/10"></div>
-              <span className="px-3 text-xs text-gray-500 font-medium">or with email</span>
-              <div className="flex-1 border-t border-white/10"></div>
+            <div className="flex items-center my-6">
+              <div className="flex-1 border-t border-white/10" />
+              <span className="px-4 text-sm text-gray-500 font-medium">or with email</span>
+              <div className="flex-1 border-t border-white/10" />
             </div>
 
-            <form className="space-y-5" onSubmit={e => e.preventDefault()}>
+            {/* Form */}
+            <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
               
               {/* Email */}
-              <div className="space-y-2">
-                <label className="text-[13px] text-gray-400 font-medium ml-1">Email Address</label>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                  </div>
-                  <input 
-                    type="email" 
-                    placeholder="you@company.com" 
-                    className="w-full bg-[#1A1A24] border border-white/5 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all text-[15px]"
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <input
+                    type="email"
+                    placeholder="admin@gmail.com"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                   />
                 </div>
               </div>
 
               {/* Password */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between ml-1">
-                  <label className="text-[13px] text-gray-400 font-medium">Password</label>
-                  <a href="#" className="text-[13px] text-[#6C5CE7] hover:text-indigo-400 transition-colors font-medium">Forgot password?</a>
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-sm font-medium text-gray-300">Password</label>
+                  {isSignIn && (
+                    <Link href="/forgot-password" className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors">
+                      Forgot password?
+                    </Link>
+                  )}
                 </div>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <Lock className="w-4 h-4 text-gray-500" />
-                  </div>
-                  <input 
-                    type={showPassword ? "text" : "password"} 
-                    placeholder="••••••••" 
-                    className="w-full bg-[#1A1A24] border border-white/5 rounded-lg pl-10 pr-10 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/50 transition-all text-[15px]"
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-12 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                   />
-                  <button 
-                    type="button" 
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center"
+                  <button
+                    type="button"
                     onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4 text-gray-500 hover:text-gray-300" /> : <Eye className="w-4 h-4 text-gray-500 hover:text-gray-300" />}
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
 
               {/* Submit Button */}
-              <button className="w-full bg-[#E11D48] hover:bg-[#BE123C] text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-all mt-2 shadow-[0_0_20px_rgba(225,29,72,0.3)]">
-                Sign In
-                <ArrowRight className="w-4 h-4" />
+              <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/30 hover:scale-[1.02] mt-6">
+                {isSignIn ? "Sign In" : "Create Account"}
+                <ArrowRight className="w-5 h-5" />
               </button>
-
             </form>
 
-            <div className="mt-8 text-center text-[13px] text-gray-500">
-              Don't have an account? <Link href="/register" className="text-[#6C5CE7] font-medium hover:text-indigo-400 transition-colors">Sign up free</Link>
-            </div>
-            
-          </div>
-          
-          <div className="mt-6 flex items-center justify-center gap-2 text-xs text-gray-600">
-            <Lock className="w-3 h-3" />
-            Secured by enterprise-grade encryption
+            {/* Footer */}
+            <p className="mt-6 text-center text-sm text-gray-400">
+              {isSignIn ? "Don't have an account?" : "Already have an account?"}{" "}
+              <button
+                onClick={() => setIsSignIn(!isSignIn)}
+                className="text-indigo-400 hover:text-indigo-300 font-semibold transition-colors"
+              >
+                {isSignIn ? "Sign up free" : "Sign in"}
+              </button>
+            </p>
           </div>
 
+          {/* Security Badge */}
+          <div className="mt-6 flex items-center justify-center gap-2 text-xs text-gray-500">
+            <Shield className="w-4 h-4" />
+            <span>Protected by 256-bit encryption</span>
+          </div>
         </div>
       </div>
 
