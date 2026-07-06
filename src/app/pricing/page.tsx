@@ -82,24 +82,8 @@ export default function PricingPage() {
     <div className="min-h-screen bg-mesh">
       <div className="grid-pattern absolute inset-0 pointer-events-none opacity-30" />
 
-      {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-40 glass border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
-              <Zap className="w-4.5 h-4.5 text-indigo-400" />
-            </div>
-            <span className="font-bold text-white text-lg">LeadFlow</span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link href="/" className="nav-link">Dashboard</Link>
-            <Link href="/about" className="nav-link">About</Link>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero */}
-      <section className="pt-32 pb-16 px-4 text-center">
+      <section className="pt-20 pb-16 px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-6">
             <Sparkles className="w-3.5 h-3.5" />
@@ -192,7 +176,7 @@ export default function PricingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 mb-16">
         <div className="max-w-2xl mx-auto text-center">
           <div className="glass-card rounded-3xl p-12 glow-brand">
             <h2 className="text-3xl font-bold text-white mb-4">Ready to Start?</h2>
@@ -203,10 +187,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-
-      <footer className="border-t border-white/5 py-8 px-4 text-center">
-        <p className="text-slate-600 text-xs">© 2026 LeadFlow AI. All rights reserved.</p>
-      </footer>
     </div>
   );
 }

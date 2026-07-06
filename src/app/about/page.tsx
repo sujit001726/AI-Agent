@@ -36,26 +36,8 @@ export default function AboutPage() {
     <div className="min-h-screen bg-mesh">
       <div className="grid-pattern absolute inset-0 pointer-events-none opacity-30" />
 
-      {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-40 glass border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
-              <Zap className="w-4.5 h-4.5 text-indigo-400" />
-            </div>
-            <span className="font-bold text-white text-lg">LeadFlow</span>
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/" className="nav-link">Dashboard</Link>
-            <Link href="/contact" className="btn-primary text-sm px-5 py-2.5 flex items-center gap-1.5">
-              Contact Us <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero */}
-      <section className="pt-32 pb-20 px-4 text-center relative overflow-hidden">
+      <section className="pt-20 pb-20 px-4 text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10 blur-3xl bg-indigo-500 pointer-events-none" />
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 text-xs font-semibold text-indigo-400 mb-6">
@@ -211,7 +193,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 mb-16">
         <div className="max-w-3xl mx-auto text-center">
           <div className="glass-card rounded-3xl p-12 glow-brand">
             <h2 className="text-3xl font-bold text-white mb-4">Ready to Get Started?</h2>
@@ -227,11 +209,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/5 py-8 px-4 text-center">
-        <p className="text-slate-600 text-xs">© 2026 LeadFlow AI. All rights reserved. · <Link href="/features" className="hover:text-slate-400 transition-colors">Features</Link> · <Link href="/pricing" className="hover:text-slate-400 transition-colors">Pricing</Link> · <Link href="/contact" className="hover:text-slate-400 transition-colors">Contact</Link></p>
-      </footer>
     </div>
   );
 }
