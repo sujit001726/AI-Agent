@@ -9,13 +9,13 @@ export const redisConnection = new IORedis(REDIS_URL, {
 });
 
 // Queue definitions
-export const discoveryQueue = new Queue('discovery', { connection: redisConnection });
-export const enrichmentQueue = new Queue('enrichment', { connection: redisConnection });
-export const outreachQueue = new Queue('outreach', { connection: redisConnection });
+export const discoveryQueue = new Queue('discovery', { connection: redisConnection as any });
+export const enrichmentQueue = new Queue('enrichment', { connection: redisConnection as any });
+export const outreachQueue = new Queue('outreach', { connection: redisConnection as any });
 
 // QueueEvents for progress monitoring (used in API routes)
-export const discoveryEvents = new QueueEvents('discovery', { connection: redisConnection });
-export const enrichmentEvents = new QueueEvents('enrichment', { connection: redisConnection });
+export const discoveryEvents = new QueueEvents('discovery', { connection: redisConnection as any });
+export const enrichmentEvents = new QueueEvents('enrichment', { connection: redisConnection as any });
 
 // Job payload types
 export interface DiscoveryJobData {

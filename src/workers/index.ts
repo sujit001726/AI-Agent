@@ -68,7 +68,7 @@ const discoveryWorker = new Worker<DiscoveryJobData>(
 
     // Store leads and enqueue enrichment jobs
     const { Queue } = await import('bullmq');
-    const enrichmentQueue = new Queue('enrichment', { connection: redisConnection });
+    const enrichmentQueue = new Queue('enrichment', { connection: redisConnection as any });
 
     let savedCount = 0;
     for (const place of results) {
@@ -121,7 +121,7 @@ const discoveryWorker = new Worker<DiscoveryJobData>(
       throw error;
     }
   },
-  { connection: redisConnection, concurrency: 2 }
+  { connection: redisConnection as any, concurrency: 2 }
 );
 
 // ─────────────────────────────────────────────
@@ -187,7 +187,7 @@ const enrichmentWorker = new Worker<EnrichmentJobData>(
 
     return { email, enrichmentStatus };
   },
-  { connection: redisConnection, concurrency: 5 }
+  { connection: redisConnection as any, concurrency: 5 }
 );
 
 // ─────────────────────────────────────────────
@@ -285,7 +285,7 @@ const outreachWorker = new Worker<OutreachJobData>(
     console.log(`[Outreach] Sent to ${lead.email}, messageId=${sendData.id}`);
     return { sent: true, messageId: sendData.id };
   },
-  { connection: redisConnection, concurrency: 3 }
+  { connection: redisConnection as any, concurrency: 3 }
 );
 
 // ─────────────────────────────────────────────
