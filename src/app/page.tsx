@@ -107,7 +107,7 @@ export default function HomePage() {
         </div>
 
         <main className="relative z-20 pt-32 pb-20 px-4 flex flex-col items-center justify-center w-full">
-        <div className="text-center max-w-6xl mx-auto mb-12 relative z-10">
+        <div className="text-center max-w-6xl mx-auto mb-12 relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-1000 ease-out">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-5 tracking-tight leading-[1.15]">
             Discover. Compare. <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Stay Ahead.</span>
           </h1>
@@ -116,7 +116,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="w-full max-w-[1100px] mx-auto px-4">
+        <div className="w-full max-w-[1100px] mx-auto px-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-150 ease-out fill-mode-both">
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-5 px-2">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.name;
@@ -226,7 +226,7 @@ export default function HomePage() {
         </div>
 
         {/* Hero Image Addition */}
-        <div className="w-full max-w-5xl mx-auto mt-16 sm:mt-24 px-4 relative z-10 animate-in fade-in slide-in-from-bottom-10 duration-1000 ease-out">
+        <div className="w-full max-w-5xl mx-auto mt-16 sm:mt-24 px-4 relative z-10 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300 ease-out fill-mode-both">
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-indigo-500/20 group">
             {/* Glossy overlay effect */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
@@ -260,19 +260,22 @@ export default function HomePage() {
         {filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filteredItems.map((item) => (
-              <div key={item.id} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:-translate-y-1 transition-all duration-300 group cursor-pointer hover:border-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-500/10 flex flex-col justify-between">
-                <div>
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                    <div className="w-10 h-10 rounded-lg overflow-hidden">
-                       <img src={item.image} alt={item.name} className="w-full h-full" />
+              <div key={item.id} className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:-translate-y-2 transition-all duration-500 ease-out group cursor-pointer hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/20 flex flex-col justify-between overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-indigo-500/10 group-hover:via-purple-500/5 group-hover:to-pink-500/10 transition-colors duration-500 z-0"></div>
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500 ease-out">
+                      <div className="w-10 h-10 rounded-lg overflow-hidden">
+                         <img src={item.image} alt={item.name} className="w-full h-full" />
+                      </div>
                     </div>
+                    <h3 className="text-lg font-bold mb-2 text-white group-hover:text-indigo-400 transition-colors duration-300">{item.name}</h3>
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">{item.desc}</p>
                   </div>
-                  <h3 className="text-lg font-bold mb-2 text-white group-hover:text-indigo-400 transition-colors">{item.name}</h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">{item.desc}</p>
-                </div>
-                <div className="flex items-center justify-between pt-3 border-t border-white/5 mt-4">
-                  <span className="text-xs font-semibold px-3 py-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg border border-indigo-500/20">{item.category}</span>
-                  <span className="text-sm font-bold text-white">{item.price}</span>
+                  <div className="flex items-center justify-between pt-3 border-t border-white/5 mt-4">
+                    <span className="text-xs font-semibold px-3 py-1.5 bg-indigo-500/10 text-indigo-400 rounded-lg border border-indigo-500/20">{item.category}</span>
+                    <span className="text-sm font-bold text-white">{item.price}</span>
+                  </div>
                 </div>
               </div>
             ))}
