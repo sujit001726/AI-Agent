@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Search, User, ShoppingBag, MapPin, Menu, X } from "lucide-react";
+import LoginModal from "./LoginModal";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,13 +54,13 @@ export default function Navbar() {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-3 sm:gap-5">
-            <Link 
-              href="/login"
+            <button 
+              onClick={() => setLoginModalOpen(true)}
               className="hidden lg:flex items-center gap-2 text-sm font-semibold text-white/90 hover:text-white transition"
             >
               <User className="w-5 h-5" />
               <span className="hidden xl:inline">Sign in or Register</span>
-            </Link>
+            </button>
             <button className="text-white/90 hover:text-white transition p-2 hover:bg-white/10 rounded-lg">
               <ShoppingBag className="w-5 h-5" />
             </button>
@@ -89,13 +91,15 @@ export default function Navbar() {
               <Link href="/agencies" className="block text-white hover:bg-white/10 transition px-4 py-3 rounded-lg font-semibold">AI Agencies</Link>
               <Link href="/blog" className="block text-white hover:bg-white/10 transition px-4 py-3 rounded-lg font-semibold">Blog</Link>
               <div className="pt-4 border-t border-white/10 mt-4">
-                <Link href="/login" className="block text-white hover:bg-white/10 transition px-4 py-3 rounded-lg font-semibold">Sign in or Register</Link>
+                <button onClick={() => { setLoginModalOpen(true); setMobileMenuOpen(false); }} className="block w-full text-left text-white hover:bg-white/10 transition px-4 py-3 rounded-lg font-semibold">Sign in or Register</button>
                 <Link href="/add-listing" className="block bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-center px-4 py-3 rounded-lg font-semibold mt-2">Add a listing</Link>
               </div>
             </div>
           </div>
         )}
       </nav>
+
+      <LoginModal isOpen={loginModalOpen} onClose={() => setLoginModalOpen(false)} />
     </>
   );
 }
