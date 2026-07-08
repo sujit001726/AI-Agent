@@ -4,7 +4,19 @@ import type { NextRequest } from "next/server";
 
 // Routes that are publicly accessible without authentication
 const PUBLIC_PATHS = [
+  "/",
   "/login",
+  "/agents",
+  "/tools",
+  "/events",
+  "/jobs",
+  "/agencies",
+  "/blog",
+  "/about",
+  "/contact",
+  "/features",
+  "/pricing",
+  "/add-listing",
   "/api/auth",
   "/api/webhooks",
   "/api/unsubscribe",
