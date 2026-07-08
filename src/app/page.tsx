@@ -94,15 +94,15 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans">
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop')",
+              backgroundImage: "url('/ai-agent.jpg')",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
         </div>
 
@@ -225,25 +225,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Hero Image Addition */}
-        <div className="w-full max-w-5xl mx-auto mt-16 sm:mt-24 px-4 relative z-10 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300 ease-out fill-mode-both">
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-indigo-500/20 group">
-            {/* Glossy overlay effect */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none"></div>
-            
-            <img 
-              src="/hero-dashboard.png" 
-              alt="AI Dashboard Mockup" 
-              className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-            />
-            
-            {/* Floating glass reflection */}
-            <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/10 to-transparent transform -skew-y-6 translate-y-[-50%] group-hover:translate-y-[20%] transition-transform duration-1000 z-20 pointer-events-none"></div>
-          </div>
-          
-          {/* Decorative blur beneath image */}
-          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-indigo-500/30 blur-[100px] z-0 pointer-events-none"></div>
-        </div>
+
 
       </main>
       </section>
