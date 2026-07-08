@@ -103,6 +103,7 @@ export default function HomePage() {
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/40 to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 via-transparent to-purple-900/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
         </div>
 
