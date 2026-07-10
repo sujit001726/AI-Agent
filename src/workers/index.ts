@@ -12,8 +12,7 @@
 
 import 'dotenv/config';
 import { searchPlaces, getSimulatedPlaces, PlaceResult } from '../lib/places';
-import 'dotenv/config';
-import { Worker, Job } from 'bullmq';
+import { Worker, Job, Queue } from 'bullmq';
 import IORedis from 'ioredis';
 import { prisma } from '../lib/prisma';
 import { enrichWebsite } from '../lib/enrichment';
@@ -22,8 +21,12 @@ import type { DiscoveryJobData, EnrichmentJobData, OutreachJobData } from '../li
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 const DEV_MODE = process.env.DEV_MODE === 'true';
 const BASE_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000';
+const EMAIL_FROM = process.env.EMAIL_FROM || 'LeadFlow <outreach@yourdomain.com>';
 
 const redisConnection = new IORedis(REDIS_URL, { maxRetriesPerRequest: null });
+
+// ── Shared queues (created once at module scope, not per-job) ──────────────
+const enrichmentQueue = new Queue('enrichment', { connection: redisConnection as any });
 
 // ─────────────────────────────────────────────
 // DISCOVERY AGENT
@@ -67,8 +70,6 @@ const discoveryWorker = new Worker<DiscoveryJobData>(
     }
 
     // Store leads and enqueue enrichment jobs
-    const { Queue } = await import('bullmq');
-    const enrichmentQueue = new Queue('enrichment', { connection: redisConnection as any });
 
     let savedCount = 0;
     for (const place of results) {
@@ -264,7 +265,7 @@ const outreachWorker = new Worker<OutreachJobData>(
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const { data: sendData, error } = await resend.emails.send({
-      from: 'LeadFlow <outreach@yourdomain.com>',
+      from: EMAIL_FROM,
       to: lead.email,
       subject: renderedSubject,
       html: finalHtmlBody,
@@ -337,13 +338,19 @@ for (const [name, worker] of [
 console.log('🚀 LeadFlow workers started (discovery, enrichment, outreach)');
 console.log(`   DEV_MODE: ${DEV_MODE ? '✅ enabled (simulated sends)' : '❌ disabled (real sends)'}`);
 
-// Graceful shutdown
-process.on('SIGTERM', async () => {
+// Graceful shutdown — handles both SIGTERM (production) and SIGINT (Ctrl+C in dev)
+async function gracefulShutdown(signal: string) {
+  console.log(`\n[Worker] Received ${signal} — shutting down gracefully...`);
   await Promise.all([
     discoveryWorker.close(),
     enrichmentWorker.close(),
     outreachWorker.close(),
+    enrichmentQueue.close(),
   ]);
   await prisma.$disconnect();
+  console.log('[Worker] All workers closed. Goodbye.');
   process.exit(0);
-});
+}
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT',  () => gracefulShutdown('SIGINT'));
