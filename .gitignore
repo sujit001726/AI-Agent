@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Redis local binaries — use Docker (docker-compose.yml) instead
+/Redis/
+/Redis.zip
+dump.rdb
+
+# Local assets folder (use /public instead)
+/assets/
+
+# Internal scripts
+*.ps1
