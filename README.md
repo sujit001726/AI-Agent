@@ -7,16 +7,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.x-38bdf8?logo=tailwindcss)
 ![Prisma](https://img.shields.io/badge/Prisma-7.x-2D3748?logo=prisma)
 
----
-
-## ✨ Features
-
-- 🤖 **Claude AI Parsing** — Natural language intent extraction from plain English instructions
-- 🗺️ **Google Maps Discovery** — Real-time search across 200M+ businesses globally
-- 📧 **Personalized Outreach** — AI-crafted emails sent via Resend with full tracking
-- ⚡ **Background Workers** — Redis-powered BullMQ job queue for async campaign processing
-- 📊 **Campaign Analytics** — Live dashboards with discovery & enrichment metrics
-- 🔒 **Enterprise Security** — SOC 2 compliant, GDPR ready, end-to-end encryption
+n
 
 ---
 

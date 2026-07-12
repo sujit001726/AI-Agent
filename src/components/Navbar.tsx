@@ -22,8 +22,8 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-black/80 backdrop-blur-xl shadow-lg border-b border-white/10"
-            : "bg-transparent backdrop-blur-none"
+            ? "bg-[#111113]/95 backdrop-blur-xl shadow-lg border-b border-white/10"
+            : "bg-[#111113] backdrop-blur-none"
         }`}
         style={{ paddingTop: "14px", paddingBottom: "10px" }}
       >
@@ -99,10 +99,10 @@ export default function Navbar() {
               <ShoppingCart className="w-4.5 h-4.5" />
             </button>
 
-            {/* Add a listing — outlined purple button */}
+            {/* Add a listing — white button with purple text */}
             <Link
               href="/add-listing"
-              className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-purple-300 border border-purple-400/60 hover:border-purple-300 hover:text-white hover:bg-purple-600/20 transition-all duration-200 px-3.5 py-1.5 rounded-md whitespace-nowrap"
+              className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-[#6366f1] bg-white hover:bg-gray-50 transition-all duration-200 px-4 py-2 rounded-md whitespace-nowrap shadow-sm ml-2"
             >
               <MapPin className="w-4 h-4 flex-shrink-0" />
               <span>Add a listing</span>
